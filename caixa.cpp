@@ -8,6 +8,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <Box2D/Box2D.h>
 
 using namespace std;
 /* Variaveis */
@@ -38,8 +39,18 @@ public:
     GraphicElement();
     ~GraphicElement();
 };
-class PhysicalObject;
-class Level;
+class PhysicalObject : public GraphicElement
+{
+private:
+    b2BodyDef body_def;
+    b2Body *body;
+    b2PolygonShape shape;
+    b2FixtureDef fixture_def;
+};
+class Level
+{
+
+};
 
 /* Methods */
 // Methods from GraphicElement class
