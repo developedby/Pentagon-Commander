@@ -48,7 +48,16 @@ public:
     b2Body *body;
     b2PolygonShape shape;
     b2FixtureDef fixture_def;
-    void setId (int _id);
+    void setId(int _id);
+};
+class LivingObject : public PhysicalObject
+{
+private:
+    int hp;
+    bool alive;
+public:
+    void addHp(int dhp);
+    bool getAlive();
 };
 class Camera
 {
@@ -61,17 +70,20 @@ private:
 class Level
 {
 private:
-    int n_objects;
+    int n_players;
+    int n_physical_objects;
+    int n_living_objects;
     int n_cameras;
     Camera *camera;
 public:
-    PhysicalObject *player;
-    PhysicalObject *object;
+    LivingObject *player;
+    PhysicalObject *physical_object;
+    LivingObject *living_object;
     b2World world;
 };
 
 /* Methods */
-// Methods from GraphicElement class
+/* Methods from GraphicElement */
 GraphicElement::GraphicElement()
 {
     bitmap = NULL;
@@ -108,6 +120,18 @@ void GraphicElement::setBitmap(char *bitmap_filename)
         al_destroy_bitmap(bitmap);
     bitmap = al_load_bitmap(bitmap_filename);
 }
+
+/* Methods from PhysicalObject */
+/* Methods from LivingObject */
+LivingObject :: addHp(int dhp)
+{
+    hp += dhp;
+    if(hp <= 0)
+        alive = 0;
+}
+/* Methods from Camera */
+/* Methods from Level */
+
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
