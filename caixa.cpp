@@ -42,14 +42,32 @@ public:
 class PhysicalObject : public GraphicElement
 {
 private:
+    int id;
+public:
     b2BodyDef body_def;
     b2Body *body;
     b2PolygonShape shape;
     b2FixtureDef fixture_def;
+    void setId (int _id);
+};
+class Camera
+{
+private:
+    float px_x;
+    float px_y;
+    float width;
+    float height;
 };
 class Level
 {
-
+private:
+    int n_objects;
+    int n_cameras;
+    Camera *camera;
+public:
+    PhysicalObject *player;
+    PhysicalObject *object;
+    b2World world;
 };
 
 /* Methods */
