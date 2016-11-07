@@ -57,6 +57,7 @@ private:
     bool alive;
 public:
     void addHp(int dhp);
+    void setAlive(bool _alive);
     bool getAlive();
 };
 class Camera
@@ -128,6 +129,14 @@ LivingObject :: addHp(int dhp)
     hp += dhp;
     if(hp <= 0)
         alive = 0;
+}
+LivingObject :: setAlive(bool _alive)
+{
+    alive=_alive;
+}
+LivingObject :: getAlive()
+{
+    return alive;
 }
 /* Methods from Camera */
 /* Methods from Level */
