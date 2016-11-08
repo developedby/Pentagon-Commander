@@ -11,3 +11,17 @@
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 
+1478609440 source:/home/aluno/Documentos/ex/jogo_prog2-master/caixa.cpp
+	<stdio.h>
+	<iostream>
+	<string>
+	<time.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<Box2D/Box2D.h>
+	<caixa.hpp>
+

@@ -9,141 +9,9 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <Box2D/Box2D.h>
+#include <caixa.hpp>
 
 using namespace std;
-/* Variaveis */
-const float FPS = 60;
-const int SCREEN_W = 640;
-const int SCREEN_H = 480;
-bool comAudio = true;
-bool key[ALLEGRO_KEY_MAX];
-bool redraw = false;
-
-/* Classes */
-class GraphicElement
-{
-private:
-    float px_x;
-    float px_y;
-    float px_center_x;
-    float px_center_y;
-    int flip_flag;
-    ALLEGRO_BITMAP *bitmap;
-    ALLEGRO_BITMAP *drawing_target;
-    void getCornerFromCenter();
-public:
-    void printOnScreen();
-    void setDrawingTarget(ALLEGRO_BITMAP *_drawing_target);
-    void setFlipFlag(int flag);
-    void setBitmap(char *bitmap_filename);
-    GraphicElement();
-    ~GraphicElement();
-};
-class PhysicalObject : public GraphicElement
-{
-private:
-    int id;
-public:
-    b2BodyDef body_def;
-    b2Body *body;
-    b2PolygonShape shape;
-    b2FixtureDef fixture_def;
-    void setId(int _id);
-};
-class LivingObject : public PhysicalObject
-{
-private:
-    int hp;
-    bool alive;
-public:
-    void addHp(int dhp);
-    void setAlive(bool _alive);
-    bool getAlive();
-};
-class Camera
-{
-private:
-    float px_x;
-    float px_y;
-    float width;
-    float height;
-};
-class Level
-{
-private:
-    int n_players;
-    int n_physical_objects;
-    int n_living_objects;
-    int n_cameras;
-    Camera *camera;
-public:
-    LivingObject *player;
-    PhysicalObject *physical_object;
-    LivingObject *living_object;
-    b2World world;
-};
-
-/* Methods */
-/* Methods from GraphicElement */
-GraphicElement::GraphicElement()
-{
-    bitmap = NULL;
-}
-GraphicElement::~GraphicElement()
-{
-    al_destroy_bitmap(bitmap);
-}
-void GraphicElement::getCornerFromCenter()
-{
-    int height = al_get_bitmap_height(bitmap);
-    int width = al_get_bitmap_width(bitmap);
-    /* All bitmap dimensions are to be odd sized */
-    px_x = px_center_x - width/2;
-    px_y = px_center_y - height/2;
-}
-void GraphicElement::printOnScreen()
-{
-    getCornerFromCenter();
-    al_set_target_bitmap(drawing_target);
-    al_draw_bitmap(bitmap, px_x, px_y, flip_flag);
-}
-void GraphicElement::setDrawingTarget(ALLEGRO_BITMAP *_drawing_target)
-{
-    drawing_target = _drawing_target;
-}
-void GraphicElement::setFlipFlag(int flag)
-{
-    flip_flag = flag;
-}
-void GraphicElement::setBitmap(char *bitmap_filename)
-{
-    if(bitmap)
-        al_destroy_bitmap(bitmap);
-    bitmap = al_load_bitmap(bitmap_filename);
-}
-
-/* Methods from PhysicalObject */
-/* Methods from LivingObject */
-LivingObject :: addHp(int dhp)
-{
-    hp += dhp;
-    if(hp <= 0)
-        alive = 0;
-}
-LivingObject :: setAlive(bool _alive)
-{
-    alive=_alive;
-}
-LivingObject :: getAlive()
-{
-    return alive;
-}
-/* Methods from Camera */
-/* Methods from Level */
-
-/* Functions */
-int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
-void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 
 int main()
 {
@@ -152,6 +20,7 @@ int main()
    ALLEGRO_TIMER *timer = NULL;
    ALLEGRO_FONT *font = NULL;
    ALLEGRO_SAMPLE *som=NULL;
+   LivingObject bob(90,0);
    bool redraw = true;
 
    if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)

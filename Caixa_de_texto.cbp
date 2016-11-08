@@ -31,8 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Camera.hpp" />
+		<Unit filename="GraphicElement.hpp" />
+		<Unit filename="Level.hpp" />
+		<Unit filename="LivingObject.hpp" />
+		<Unit filename="PhysicalObject.hpp" />
 		<Unit filename="caixa.cpp" />
-		<Unit filename="caixa.h" />
+		<Unit filename="caixa.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
