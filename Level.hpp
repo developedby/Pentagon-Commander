@@ -12,5 +12,7 @@ public:
     LivingObject *player;
     PhysicalObject *physical_object;
     LivingObject *living_object;
-    b2World world;
+    b2Vec2 gravity;
+    b2World *world;
+    //createWorld()
 };

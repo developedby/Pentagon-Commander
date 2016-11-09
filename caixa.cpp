@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -21,7 +22,8 @@ int main()
    ALLEGRO_FONT *font = NULL;
    ALLEGRO_SAMPLE *som=NULL;
    LivingObject bob(90,0);
-   bool redraw = true;
+   Level thelevel;
+   //bool redraw = true;
 
    if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
         return -1;
