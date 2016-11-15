@@ -3,6 +3,8 @@ class GraphicElement
 private:
     float px_x;
     float px_y;
+    float px_width;
+    float px_height;
     float px_center_x;
     float px_center_y;
     int flip_flag;
@@ -16,14 +18,19 @@ public:
     void setDrawingTarget(ALLEGRO_BITMAP *_drawing_target);
     void setFlipFlag(int flag);
     void setCurrentSprite(int n);
-    void loadSprite(char *sprites_filename, int _n_sprites, float px_width, float px_height);
+    void loadSprite(const char *sprites_filename, int _n_sprites, float px_width, float px_height);
+    float getHeight();
+    float getWidth();
     GraphicElement();
     ~GraphicElement();
+    void setCenter(float _px_center_x, float _px_center_y);
 };
 
 GraphicElement::GraphicElement()
 {
-    sprite = NULL;
+    sprite = nullptr;
+    current_sprite = 0;
+    flip_flag = 0;
 }
 
 GraphicElement::~GraphicElement()
@@ -68,9 +75,11 @@ void GraphicElement::setCurrentSprite(int n)
     current_sprite = n;
 }
 
-void GraphicElement::loadSprite(char *sprites_filename, int _n_sprites, float px_width, float px_height)
+void GraphicElement::loadSprite(const char *sprites_filename, int _n_sprites, float _px_width, float _px_height)
 {
     int i;
+    px_width = _px_width;
+    px_height = _px_height;
     ALLEGRO_BITMAP *sprite_sheet;
     if(sprite)
     {
@@ -80,10 +89,25 @@ void GraphicElement::loadSprite(char *sprites_filename, int _n_sprites, float px
     }
     sprite = new ALLEGRO_BITMAP*[_n_sprites];
     sprite_sheet = al_load_bitmap(sprites_filename);
-    n_sprites=_n_sprites;
+    n_sprites = _n_sprites;
     for(i=0;i<n_sprites;i++)
     {
+        sprite[i] = al_create_bitmap(px_width, px_height);
         al_set_target_bitmap(sprite[i]);
-        al_draw_bitmap_region(sprite_sheet,i*px_width,0,0,0,px_width,px_height,flip_flag);
+        al_draw_bitmap_region(sprite_sheet,i*px_width,0,px_width,px_height,0,0,flip_flag);
     }
+}
+float GraphicElement::getHeight()
+{
+    return px_height;
+}
+float GraphicElement::getWidth()
+{
+    return px_width;
+}
+
+void GraphicElement::setCenter(float _px_center_x, float _px_center_y)
+{
+    px_center_x = _px_center_x;
+    px_center_y = _px_center_y;
 }

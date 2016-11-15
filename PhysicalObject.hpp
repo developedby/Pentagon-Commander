@@ -3,11 +3,12 @@ class PhysicalObject : public GraphicElement
 private:
     int id;
 public:
+    void setId(int _id);
     b2BodyDef body_def;
     b2Body *body;
     b2PolygonShape shape;
     b2FixtureDef fixture_def;
-    void setId(int _id);
+    friend class Level;
     //PhysicalObject();
     //~PhysicalObject();
 };
