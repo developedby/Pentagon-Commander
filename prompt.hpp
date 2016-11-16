@@ -18,7 +18,7 @@ private:
     float log_x;
     float log_y;
     bool show_log;
-    Prompt();
+    Prompt(){};
 public:
     void printLine();
     void feedLine();
