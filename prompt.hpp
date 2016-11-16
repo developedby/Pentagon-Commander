@@ -14,7 +14,7 @@ private:
     string *log[500];
     string current_line;
     string feedback_line;
-    char pressed_character;
+    int pressed_character;
     ALLEGRO_BITMAP *bitmap;
     float width;
     float height;
@@ -33,7 +33,7 @@ public:
     void setShowLog();
     bool getShowLog();
     static Prompt* getPrompt();
-    int setPressedCharacter(ALLEGRO_EVENT *event);
+    void setPressedCharacter(ALLEGRO_EVENT *event);
 };
 
 Prompt* Prompt::object = nullptr;
@@ -47,7 +47,7 @@ Prompt* Prompt::getPrompt()
     return object;
 }
 
-int Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
+void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
 {
     if(event->type == ALLEGRO_KEY_UP)
         pressed_character = event->keyboard.keycode;
