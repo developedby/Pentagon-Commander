@@ -1,12 +1,20 @@
+/*#ifndef STRING
+#include <string>
+#define STRING
+#endif // STRING*/
+
 bool key[ALLEGRO_KEY_MAX];
+
+using namespace std;
 
 class Prompt
 {
 private:
     static Prompt *object;
-    //string *log[500];
-    //string current_line;
-    //string feedback_line;
+    string *log[500];
+    string current_line;
+    string feedback_line;
+    char pressed_character;
     ALLEGRO_BITMAP *bitmap;
     float width;
     float height;
@@ -25,7 +33,7 @@ public:
     void setShowLog();
     bool getShowLog();
     static Prompt* getPrompt();
-    int getPressedCharacter(ALLEGRO_EVENT *event);
+    int setPressedCharacter(ALLEGRO_EVENT *event);
 };
 
 Prompt* Prompt::object = nullptr;
@@ -39,10 +47,10 @@ Prompt* Prompt::getPrompt()
     return object;
 }
 
-int Prompt::getPressedCharacter(ALLEGRO_EVENT *event)
+int Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
 {
     if(event->type == ALLEGRO_KEY_UP)
-        return event->keyboard.keycode;
+        pressed_character = event->keyboard.keycode;
     else
-        return 0;
+        pressed_character = 0;
 }
