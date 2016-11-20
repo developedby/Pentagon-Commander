@@ -313,7 +313,7 @@ Level* Level::loadLevel(const char* filename)
     for(i=0; i<n_commands; i++)
     {
         file >> int_register;
-        level->available_command[i] = int_register;file >> int_register;
+        level->available_command[i] = int_register;
     }
 
     file.close();
