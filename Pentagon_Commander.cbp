@@ -141,8 +141,9 @@
 		<Unit filename="Level.hpp" />
 		<Unit filename="LivingObject.hpp" />
 		<Unit filename="PhysicalObject.hpp" />
-		<Unit filename="caixa.cpp" />
-		<Unit filename="caixa.hpp" />
+		<Unit filename="pentagon_commander.cpp" />
+		<Unit filename="pentagon_commander.hpp" />
+		<Unit filename="prompt.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

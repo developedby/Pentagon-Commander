@@ -14,6 +14,7 @@ private:
     LivingObject *focused_player;
     Level *level;
     ALLEGRO_BITMAP *screen;
+    GraphicElement background;
 public:
     void createScreen(float _px_x, float _px_y);
     void record();
@@ -36,9 +37,9 @@ void Camera::record()
 {
     int i;
     b2Vec2 body_pos, rect_dist;
-    level->background.setCenter(px_width/2, px_height/2);
-    level->background.setDrawingTarget(screen);
-    level->background.printOnScreen();
+    background.setCenter(px_width/2, px_height/2);
+    background.setDrawingTarget(screen);
+    background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)
     {
         body_pos = level->physical_object[i].body->GetPosition();

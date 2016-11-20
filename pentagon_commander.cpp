@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
+
+#ifndef STRING
 #include <string>
+#define STRING
+#endif // STRING
+
 #include <time.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -38,7 +44,7 @@ int main()
     bob.printOnScreen();
     al_flip_display();
     Sleep(3000);*/
-
+    Level::loadLevel("test.txt");
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
 
