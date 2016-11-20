@@ -107,7 +107,7 @@ void Level::loadPhysicalObject(ifstream *file,PhysicalObject *object,int n)
     object->body = world->CreateBody(&(object->body_def));
 
     // Loads shape
-    (*file) >> int_register;
+    (*file) >> shapetype;
 
     switch(shapetype)
     {
@@ -167,9 +167,9 @@ void Level::loadPhysicalObject(ifstream *file,PhysicalObject *object,int n)
 
     (*file) >> string_register;
     const char *sprite_filename = string_register.c_str();
-    (*file) >> int_register;
-    (*file) >> float_register;
-    (*file) >> float_register2;
+    (*file) >> int_register; //Number of Sprites
+    (*file) >> float_register; //Sprite width
+    (*file) >> float_register2; //Sprite height
     object->loadSprite(sprite_filename, int_register, float_register, float_register2);
 
     (*file) >> int_register;
@@ -242,7 +242,7 @@ Level* Level::loadLevel(const char* filename)
     Level *level;
     string string_register;
     float float_register;
-    int int_register,i;
+    int int_register,int_register2,i;
 
     level = new Level;
     file.open(filename);
@@ -276,9 +276,10 @@ Level* Level::loadLevel(const char* filename)
 
     file >> int_register;
     level->setNPlayers(int_register);
-    level->player = new LivingObject[level->getNPlayers()];
+    if(int_register)
+        level->player = new LivingObject[level->getNPlayers()];
 
-    for(i=0;i<level->getNPlayers();i++)
+    for(i=0;i<int_register;i++)
     {
         level->player[i].setMaxHp(player_default_hp);
         level->player[i].setAlive(true);
@@ -287,22 +288,24 @@ Level* Level::loadLevel(const char* filename)
 
     file >> int_register;
     level->setNLivingObjects(int_register);
-    level->living_object = new LivingObject[level->getNLivingObjects()];
+    if(int_register)
+        level->living_object = new LivingObject[level->getNLivingObjects()];
 
-    for(i=0;i<level->getNLivingObjects();i++)
+    for(i=0;i<int_register;i++)
     {
-        file >> int_register;
-        level->living_object[i].setMaxHp(int_register);
-        file >> int_register;
-        level->living_object[i].setAlive(int_register);
+        file >> int_register2;
+        level->living_object[i].setMaxHp(int_register2);
+        file >> int_register2;
+        level->living_object[i].setAlive(int_register2);
         level->loadPhysicalObject(&file,level->living_object,i);
     }
 
     file >> int_register;
     level->setNPhysicalObjects(int_register);
-    level->physical_object = new PhysicalObject[level->getNPhysicalObjects()];
+    if(int_register)
+        level->physical_object = new PhysicalObject[level->getNPhysicalObjects()];
 
-    for(i=0;i<level->getNPhysicalObjects();i++)
+    for(i=0;i<int_register;i++)
     {
         level->loadPhysicalObject(&file,level->physical_object,i);
     }
