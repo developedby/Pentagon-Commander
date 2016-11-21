@@ -27,25 +27,30 @@ int main()
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_SAMPLE *som=NULL;
-    /*GraphicElement bob;
-    Level thelevel;*/
+    int i;
+
+    Level *thelevel;
+    Camera **thecamera;
 
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
         return -1;
 
-    /*bob.px_x=0;
-    bob.px_y=0;
-    bob.loadSprite("pentagon.png", 2, 69, 69);
-    bob.setFlipFlag(0);
-    bob.setCurrentSprite(1);
-    bob.setDrawingTarget(al_get_backbuffer(display));
-    al_set_target_bitmap(al_get_backbuffer(display));
-    al_clear_to_color(al_map_rgb(255,255,255));
-    bob.printOnScreen();
-    al_flip_display();
-    Sleep(3000);*/
+    thelevel = Level::loadLevel("test.txt");
 
-    Level::loadLevel("test.txt");
+    for(i=0; i<thelevel->getNCameras(); i++)
+        thecamera = new Camera*;
+    for(i=0; i<thelevel->getNCameras(); i++)
+        thecamera[i] = new Camera;
+
+    thelevel->setCameras(thecamera);
+    for(i=0; i<thelevel->getNCameras(); i++)
+    {
+        thelevel->camera[i]->setNIndependentElements(0);
+        thelevel->setCameraPositionToPlayer();
+        thelevel->camera[i]->createScreen();
+    }
+    playLevel(thelevel, &display);
+
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
 
@@ -85,14 +90,14 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
    }
 
    //carregamos o som
-   if(comAudio)
+   /*if(comAudio)
    {
        *som = al_load_sample("ponto.wav");
        if (!*som) {
            cout << "Audio clip sample not loaded!\n";
            // -1;
        }
-   }
+   }*/
 
    *font = al_load_ttf_font("DroidSans.ttf",10,0 );
 
@@ -163,11 +168,4 @@ void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue
     al_destroy_event_queue(*event_queue);
     if(comAudio)
         al_destroy_sample(*som);
-}
-
-void recordLevel(Level *level)
-{
-    int i;
-    for(i=0; i<level->getNCameras(); i++)
-        level->camera[i]->record();
 }

@@ -28,6 +28,7 @@ private:
     bool show_log;
     Prompt(){};
 public:
+    virtual ~Prompt();
     void printLine();
     void feedLine();
     void setShowLog();
@@ -37,6 +38,11 @@ public:
 };
 
 Prompt* Prompt::object = nullptr;
+
+Prompt::~Prompt()
+{
+    delete object;
+}
 
 Prompt* Prompt::getPrompt()
 {

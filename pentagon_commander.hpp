@@ -35,6 +35,18 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
+
+
+void playLevel(Level *level, ALLEGRO_DISPLAY **display)
+{
+    int i;
+    for(i=0; i<level->getNCameras(); i++)
+    {
+        level->camera[i]->record();
+        level->camera[i]->play(*display);
+    }
+}
+
 float pixelsToMeters(float px)
 {
     float meters;
