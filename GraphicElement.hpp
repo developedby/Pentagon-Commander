@@ -13,8 +13,8 @@ private:
     int current_sprite;
     ALLEGRO_BITMAP **sprite;
     ALLEGRO_BITMAP *drawing_target;
-    void getCornerFromCenter();
 public:
+    void getCornerFromCenter();
     void printOnScreen();
     void setDrawingTarget(ALLEGRO_BITMAP *_drawing_target);
     void setFlipFlag(int flag);
@@ -26,6 +26,7 @@ public:
     GraphicElement();
     ~GraphicElement();
     void setCenter(float _px_center_x, float _px_center_y);
+    void setCorner(float _px_x, float _px_y);
 };
 
 GraphicElement::GraphicElement()
@@ -59,7 +60,6 @@ void GraphicElement::printOnScreen()
 {
     if(to_be_printed)
     {
-        getCornerFromCenter();
         al_set_target_bitmap(drawing_target);
         al_draw_bitmap(sprite[current_sprite], px_x, px_y, flip_flag);
     }
@@ -120,4 +120,10 @@ void GraphicElement::setCenter(float _px_center_x, float _px_center_y)
 void GraphicElement::setToBePrinted(bool _to_be_printed)
 {
     to_be_printed = _to_be_printed;
+}
+
+void GraphicElement::setCorner(float _px_x, float _px_y)
+{
+    px_x = _px_x;
+    px_y = _px_y;
 }

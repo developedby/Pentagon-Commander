@@ -1,11 +1,5 @@
-float pixelsToMeters(float px);
-float metersToPixels(float m);
-#include <GraphicElement.hpp>
-#include <PhysicalObject.hpp>
-
 #ifndef LIVINGOBJECT
 #define LIVINGOBJECT
-#include <LivingObject.hpp>
 #endif // LIVINGOBJECT
 
 #include <prompt.hpp>
@@ -15,7 +9,18 @@ float metersToPixels(float m);
 #define LEVEL
 #endif // LEVEL
 
+
+
 #include <Camera.hpp>
+
+
+
+float pixelsToMeters(float px);
+float metersToPixels(float m);
+#include <GraphicElement.hpp>
+#include <PhysicalObject.hpp>
+#include <LivingObject.hpp>
+
 
 /* Variables */
 const float FPS = 60;

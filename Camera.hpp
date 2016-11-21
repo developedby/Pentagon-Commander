@@ -15,11 +15,25 @@ private:
     Level *level;
     ALLEGRO_BITMAP *screen;
     GraphicElement background;
+    GraphicElement *independent_elements;
+    int n_independent_elements;
 public:
+    void setNIndependentElements(int _n_independent_elements);
+    void setIndependentElements(GraphicElement *_independent_elements);
     void createScreen(float _px_x, float _px_y);
     void record();
     void play(ALLEGRO_DISPLAY *display);
 };
+
+void Camera::setNIndependentElements(int _n_independent_elements)
+{
+    n_indenpent_elements = _n_independent_elements;
+}
+
+void Camera::setIndepentElements(GraphicElement *_independent_elements)
+{
+    independent_elements = _independent_elements;
+}
 
 void Camera::createScreen(float _px_x, float _px_y)
 {
@@ -31,13 +45,14 @@ void Camera::play(ALLEGRO_DISPLAY *display)
 {
     al_set_target_bitmap(al_get_backbuffer(display));
     al_draw_bitmap(screen, px_x, px_y, 0);
+    al_flip_display();
 }
 
 void Camera::record()
 {
     int i;
     b2Vec2 body_pos, rect_dist;
-    background.setCenter(px_width/2, px_height/2);
+    background.setCorner(0, 0);
     background.setDrawingTarget(screen);
     background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)
@@ -51,6 +66,7 @@ void Camera::record()
                 rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
                 rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
                 level->physical_object[i].setCenter(rect_dist.x, rect_dist.y);
+                level->physical_object[i].getCornerFromCenter();
                 level->physical_object[i].setDrawingTarget(screen);
                 level->physical_object[i].printOnScreen();
             }
@@ -67,6 +83,7 @@ void Camera::record()
                 rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
                 rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
                 level->living_object[i].setCenter(rect_dist.x, rect_dist.y);
+                level->living_object[i].getCornerFromCenter();
                 level->living_object[i].setDrawingTarget(screen);
                 level->living_object[i].printOnScreen();
             }
@@ -83,9 +100,15 @@ void Camera::record()
                 rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
                 rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
                 level->player[i].setCenter(rect_dist.x, rect_dist.y);
+                level->player[i].getCornerFromCenter();
                 level->player[i].setDrawingTarget(screen);
                 level->player[i].printOnScreen();
             }
         }
+    }
+    for(i=0; i<n_independent_elements; i++)
+    {
+        independent_elements[i].setDrawingTarget(screen);
+        independent_elements[i].printOnScreen();
     }
 }
