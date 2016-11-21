@@ -34,7 +34,13 @@ public:
     void play(ALLEGRO_DISPLAY *display);
     void setLvPos(b2Vec2 player_pos);
     void setWidthAndHeight(float _px_width, float _px_height);
+    void setLevel(Level *_level);
 };
+
+void Camera::setLevel(Level *_level)
+{
+    level = _level;
+}
 
 void Camera::setNIndependentElements(int _n_independent_elements)
 {

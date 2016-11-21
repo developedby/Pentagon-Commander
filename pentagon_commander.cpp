@@ -46,7 +46,7 @@ int main()
         thelevel->camera[i]->setLevel(thelevel);
         thelevel->camera[i]->setNIndependentElements(0);
         thelevel->setCameraPositionToPlayer();
-        thelevel->camera[i]->createScreen();
+        thelevel->camera[i]->createScreen(0,0);
     }
     playLevel(thelevel, &display);
 
