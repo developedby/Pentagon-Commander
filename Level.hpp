@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//useless comment
+
 enum shape_type{POLYGON=0,BOX,CIRCLE};
 enum body_type{DYNAMIC=0,STATIC,KINEMATIC};
 const int player_default_hp = 1;
