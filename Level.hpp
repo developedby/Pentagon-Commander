@@ -1,9 +1,17 @@
+#ifndef LEVEL
+#define LEVEL
+
 using namespace std;
 
 enum shape_type{POLYGON=0,BOX,CIRCLE};
 enum body_type{DYNAMIC=0,STATIC,KINEMATIC};
 const int player_default_hp = 1;
 const int n_commands = 0;
+
+#ifndef PENTAGONCOMMANDER_HPP
+#define PENTAGONCOMMANDER_HPP
+#include <PentagonCommander.hpp>
+#endif //PENTAGONCOMMANDER_HPP
 
 #ifndef LIVINGOBJECT
 #define LIVINGOBJECT
@@ -357,3 +365,6 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> int_register;
     object->setToBePrinted(int_register);
 }
+
+
+#endif // LEVEL

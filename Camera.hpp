@@ -1,3 +1,11 @@
+#ifndef CAMERA
+#define CAMERA
+
+#ifndef PENTAGONCOMMANDER_HPP
+#define PENTAGONCOMMANDER_HPP
+#include <PentagonCommander.hpp>
+#endif //PENTAGONCOMMANDER_HPP
+
 #ifndef LEVEL
 #include <Level.hpp>
 #define LEVEL
@@ -126,3 +134,5 @@ void Camera::record()
         independent_elements[i].printOnScreen();
     }
 }
+
+#endif //CAMERA

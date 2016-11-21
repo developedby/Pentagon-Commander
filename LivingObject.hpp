@@ -1,3 +1,11 @@
+#ifndef LIVINGOBJECT
+#define LIVINGOBJECT
+
+#ifndef PENTAGONCOMMANDER_HPP
+#define PENTAGONCOMMANDER_HPP
+#include <PentagonCommander.hpp>
+#endif //PENTAGONCOMMANDER_HPP
+
 class LivingObject : public PhysicalObject
 {
 private:
@@ -47,3 +55,5 @@ bool LivingObject::getAlive()
 {
     return alive;
 }
+
+#endif // LIVINGOBJECT

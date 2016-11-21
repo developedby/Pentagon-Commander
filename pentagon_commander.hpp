@@ -1,25 +1,38 @@
-#ifndef LIVINGOBJECT
-#define LIVINGOBJECT
-#endif // LIVINGOBJECT
-
-#include <prompt.hpp>
-
-#ifndef LEVEL
-#include <Level.hpp>
-#define LEVEL
-#endif // LEVEL
-
-
-
-#include <Camera.hpp>
-
-
+#ifndef PENTAGONCOMMANDER_HPP
+#define PENTAGONCOMMANDER_HPP
 
 float pixelsToMeters(float px);
 float metersToPixels(float m);
+
+
+#ifndef PROMPT
+#define PROMPT
+#include <prompt.hpp>
+
+#ifndef LEVEL
+#define LEVEL
+#include <Level.hpp>
+#endif // LEVEL
+
+#ifndef CAMERA
+#define CAMERA
+#include <Camera.hpp>
+#endif //CAMERA
+
+#ifndef GRAPHICELEMENT
+#define GRAPHICELEMENT
 #include <GraphicElement.hpp>
+#endif //GRAPHICELEMENT
+
+#ifndef PHYSICALOBJECT
+#define PHYSICALOBJECT
 #include <PhysicalObject.hpp>
+#endif //PHYSICALOBJECT
+
+#ifndef LIVINGOBJECT
+#define LIVINGOBJECT
 #include <LivingObject.hpp>
+#endif // LIVINGOBJECT
 
 
 /* Variables */
@@ -60,3 +73,5 @@ float metersToPixels(float m)
     pixels = m*m_to_px_fac;
     return pixels;
 }
+
+#endif //PENTAGONCOMMANDER_HPP

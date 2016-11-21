@@ -1,3 +1,11 @@
+#ifndef PHYSICALOBJECT
+#define PHYSICALOBJECT
+
+#ifndef PENTAGONCOMMANDER_HPP
+#define PENTAGONCOMMANDER_HPP
+#include <PentagonCommander.hpp>
+#endif //PENTAGONCOMMANDER_HPP
+
 class Level;
 
 class PhysicalObject : public GraphicElement
@@ -20,3 +28,5 @@ void PhysicalObject::setId(int _id)
 {
     id = _id;
 }
+
+#endif //PHYSICALOBJECT

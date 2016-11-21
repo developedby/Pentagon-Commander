@@ -1,7 +1,12 @@
+#ifndef PROMPT
+#define PROMPT
+
+
 /*#ifndef STRING
 #include <string>
 #define STRING
 #endif // STRING*/
+
 
 bool key[ALLEGRO_KEY_MAX];
 
@@ -60,3 +65,5 @@ void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
     else
         pressed_character = 0;
 }
+
+#endif //PROMPT
