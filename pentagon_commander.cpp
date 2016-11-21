@@ -44,6 +44,7 @@ int main()
     bob.printOnScreen();
     al_flip_display();
     Sleep(3000);*/
+
     Level::loadLevel("test.txt");
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }

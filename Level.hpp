@@ -48,134 +48,6 @@ public:
     static Level* loadLevel(const char* filename);
 };
 
-void Level::loadPhysicalObject(ifstream *file,PhysicalObject *object,int n)
-{
-    int shapetype, i, int_register;
-    float float_register, float_register2;
-    unsigned short ushort_register;
-    string string_register;
-    b2Fixture *fixture;
-    // Loads body
-    (*file) >> int_register;
-    object->setId(int_register);
-
-    (*file) >> int_register;
-    switch(int_register)
-    {
-        case DYNAMIC:
-            object->body_def.type = b2_dynamicBody;
-            break;
-        case STATIC:
-            object->body_def.type = b2_staticBody;
-            break;
-        case KINEMATIC:
-            object->body_def.type = b2_kinematicBody;
-            break;
-    }
-
-    (*file) >> float_register;
-    (*file) >> float_register2;
-    object->body_def.position.Set(float_register, float_register2);
-
-    (*file) >> float_register;
-    object->body_def.angle = float_register;
-
-    (*file) >> float_register;
-    object->body_def.linearDamping = float_register;
-
-    (*file) >> float_register;
-    object->body_def.angularDamping = float_register;
-
-    (*file) >> float_register;
-    object->body_def.gravityScale = float_register;
-
-    (*file) >> int_register;
-    object->body_def.allowSleep = int_register;
-
-    (*file) >> int_register;
-    object->body_def.awake = int_register;
-
-    (*file) >> int_register;
-    object->body_def.fixedRotation = int_register;
-
-    (*file) >> int_register;
-    object->body_def.bullet = int_register;
-
-    (*file) >> int_register;
-    object->body_def.active = int_register;
-
-    object->body = world->CreateBody(&(object->body_def));
-
-    // Loads shape
-    (*file) >> shapetype;
-
-    switch(shapetype)
-    {
-        case POLYGON:
-        {
-            int n_polygon_vertices;
-            b2Vec2 *polygon_vertice;
-            (*file) >> n_polygon_vertices;
-            polygon_vertice = new b2Vec2[n_polygon_vertices];
-            for(i=0; i<n_polygon_vertices; i++)
-            {
-                (*file) >> float_register;
-                polygon_vertice[i].x = float_register;
-                (*file) >> float_register;
-                polygon_vertice[i].y = float_register;
-            }
-            object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
-            object->fixture_def.shape = &object->polygon_shape;
-        }
-        break;
-        case BOX:
-        {
-            float half_width, half_height;
-            (*file) >> half_width;
-            (*file) >> half_height;
-            object->polygon_shape.SetAsBox(half_width, half_height);
-            object->fixture_def.shape = &object->polygon_shape;
-        }
-        break;
-        case CIRCLE:
-        {
-            float radius;
-            (*file) >> radius;
-            object->circle_shape.m_radius = radius;
-            object->fixture_def.shape = &object->circle_shape;
-        }
-        break;
-    }
-
-    //Loads fixture
-    (*file) >> float_register;
-    object->fixture_def.density = float_register;
-
-    (*file) >> float_register;
-    object->fixture_def.friction = float_register;
-
-    (*file) >> float_register;
-    object->fixture_def.restitution = float_register;
-
-    (*file) >> ushort_register;
-    object->fixture_def.filter.categoryBits = ushort_register;
-
-    (*file) >> ushort_register;
-    object->fixture_def.filter.maskBits = ushort_register;
-
-    fixture = object->body->CreateFixture(&(object->fixture_def));
-
-    (*file) >> string_register;
-    const char *sprite_filename = string_register.c_str();
-    (*file) >> int_register; //Number of Sprites
-    (*file) >> float_register; //Sprite width
-    (*file) >> float_register2; //Sprite height
-    object->loadSprite(sprite_filename, int_register, float_register, float_register2);
-
-    (*file) >> int_register;
-    object->setToBePrinted(int_register);
-}
-
 void Level::createWorld()
 {
     world = new b2World(gravity);
@@ -321,4 +193,131 @@ Level* Level::loadLevel(const char* filename)
 
     file.close();
     return level;
+}
+
+void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
+{
+    int shapetype, i, int_register;
+    float float_register, float_register2;
+    unsigned short ushort_register;
+    string string_register;
+    // Loads body
+    (*file) >> int_register;
+    object->setId(int_register);
+
+    (*file) >> int_register;
+    switch(int_register)
+    {
+        case DYNAMIC:
+            object->body_def.type = b2_dynamicBody;
+            break;
+        case STATIC:
+            object->body_def.type = b2_staticBody;
+            break;
+        case KINEMATIC:
+            object->body_def.type = b2_kinematicBody;
+            break;
+    }
+
+    (*file) >> float_register;
+    (*file) >> float_register2;
+    object->body_def.position.Set(float_register, float_register2);
+
+    (*file) >> float_register;
+    object->body_def.angle = float_register;
+
+    (*file) >> float_register;
+    object->body_def.linearDamping = float_register;
+
+    (*file) >> float_register;
+    object->body_def.angularDamping = float_register;
+
+    (*file) >> float_register;
+    object->body_def.gravityScale = float_register;
+
+    (*file) >> int_register;
+    object->body_def.allowSleep = int_register;
+
+    (*file) >> int_register;
+    object->body_def.awake = int_register;
+
+    (*file) >> int_register;
+    object->body_def.fixedRotation = int_register;
+
+    (*file) >> int_register;
+    object->body_def.bullet = int_register;
+
+    (*file) >> int_register;
+    object->body_def.active = int_register;
+
+    object->body = world->CreateBody(&(object->body_def));
+
+    // Loads shape
+    (*file) >> shapetype;
+
+    switch(shapetype)
+    {
+        case POLYGON:
+        {
+            int n_polygon_vertices;
+            b2Vec2 *polygon_vertice;
+            (*file) >> n_polygon_vertices;
+            polygon_vertice = new b2Vec2[n_polygon_vertices];
+            for(i=0; i<n_polygon_vertices; i++)
+            {
+                (*file) >> float_register;
+                polygon_vertice[i].x = float_register;
+                (*file) >> float_register;
+                polygon_vertice[i].y = float_register;
+            }
+            object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
+            object->fixture_def.shape = &object->polygon_shape;
+        }
+        break;
+        case BOX:
+        {
+            float half_width, half_height;
+            (*file) >> half_width;
+            (*file) >> half_height;
+            object->polygon_shape.SetAsBox(half_width, half_height);
+            object->fixture_def.shape = &object->polygon_shape;
+        }
+        break;
+        case CIRCLE:
+        {
+            float radius;
+            (*file) >> radius;
+            object->circle_shape.m_radius = radius;
+            object->fixture_def.shape = &object->circle_shape;
+        }
+        break;
+    }
+
+    //Loads fixture
+    (*file) >> float_register;
+    object->fixture_def.density = float_register;
+
+    (*file) >> float_register;
+    object->fixture_def.friction = float_register;
+
+    (*file) >> float_register;
+    object->fixture_def.restitution = float_register;
+
+    (*file) >> ushort_register;
+    object->fixture_def.filter.categoryBits = ushort_register;
+
+    (*file) >> ushort_register;
+    object->fixture_def.filter.maskBits = ushort_register;
+
+    object->body->CreateFixture(&(object->fixture_def));
+
+    (*file) >> string_register;
+    const char *sprite_filename = string_register.c_str();
+    (*file) >> int_register; //Number of Sprites
+    (*file) >> float_register; //Sprite width
+    (*file) >> float_register2; //Sprite height
+    object->loadSprite(sprite_filename, int_register, float_register, float_register2);
+
+    (*file) >> int_register;
+    object->setToBePrinted(int_register);
 }
