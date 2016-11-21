@@ -65,4 +65,3 @@ void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
     else
         pressed_character = 0;
 }
-
