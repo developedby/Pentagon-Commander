@@ -23,6 +23,8 @@ public:
     void createScreen(float _px_x, float _px_y);
     void record();
     void play(ALLEGRO_DISPLAY *display);
+    void setLvPos(b2Vec2 player_pos);
+    void setWidthAndHeight(float _px_width, float _px_height);
 };
 
 void Camera::setNIndependentElements(int _n_independent_elements)
@@ -30,9 +32,20 @@ void Camera::setNIndependentElements(int _n_independent_elements)
     n_indenpent_elements = _n_independent_elements;
 }
 
-void Camera::setIndepentElements(GraphicElement *_independent_elements)
+void Camera::setIndependentElements(GraphicElement *_independent_elements)
 {
     independent_elements = _independent_elements;
+}
+
+void Camera::setLvPos(b2Vec2 player_pos)
+{
+    lv_pos = player_pos;
+}
+
+void Camera::setWidthAndHeight(float _px_width, float _px_height)
+{
+    px_width = _px_width;
+    px_height = _px_height;
 }
 
 void Camera::createScreen(float _px_x, float _px_y)
@@ -41,6 +54,7 @@ void Camera::createScreen(float _px_x, float _px_y)
     px_y = _px_y;
     screen = al_create_bitmap(px_width, px_height);
 }
+
 void Camera::play(ALLEGRO_DISPLAY *display)
 {
     al_set_target_bitmap(al_get_backbuffer(display));

@@ -24,7 +24,9 @@ private:
     void loadPhysicalObject(ifstream *file,PhysicalObject *object,int n);
     void createWorld();
     bool available_command[n_commands];
+    Level();
 public:
+    virtual ~Level();
     LivingObject *player;
     PhysicalObject *physical_object;
     LivingObject *living_object;
@@ -46,7 +48,39 @@ public:
     string getName();
     Camera **camera;
     static Level* loadLevel(const char* filename);
+    void setCameraPositionToPlayer();
 };
+
+Level::~Level()
+{
+    int i;
+    delete world;
+    for(i=0; i<n_physical_objects; i++)
+    {
+        delete[] physical_object[i];
+    }
+    for(i=0; i<n_living_objects; i++)
+    {
+        delete[] living_object[i];
+    }
+    for(i=0; i<n_players; i++)
+    {
+        delete[] player[i];
+    }
+}
+
+void Level::setCameraPositionToPlayer()
+{
+    int i;
+    if(n_players==n_cameras)
+    {
+        for(i=0; i<n_cameras; i++)
+        {
+            camera[i].setLvPos(player[i].body_def.position);
+            camera[i].setWidthAndHeight(400.0,400.0); //testing
+        }
+    }
+}
 
 void Level::createWorld()
 {
@@ -272,6 +306,8 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             }
             object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
             object->fixture_def.shape = &object->polygon_shape;
+            for(i=0 i<n_polygon_vertices; i++)
+                delete[] polygon_vertice[i];
         }
         break;
         case BOX:
