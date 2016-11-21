@@ -1,6 +1,6 @@
 #ifndef PROMPT
 #define PROMPT
-
+#endif //PROMPT
 
 /*#ifndef STRING
 #include <string>
@@ -66,4 +66,3 @@ void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
         pressed_character = 0;
 }
 
-#endif //PROMPT

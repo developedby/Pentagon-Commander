@@ -1,6 +1,6 @@
 #ifndef LEVEL
 #define LEVEL
-
+#endif // LEVEL
 using namespace std;
 
 //useless comment
@@ -245,6 +245,7 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     float float_register, float_register2;
     unsigned short ushort_register;
     string string_register;
+
     // Loads body
     (*file) >> int_register;
     object->setId(int_register);
@@ -367,6 +368,3 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> int_register;
     object->setToBePrinted(int_register);
 }
-
-
-#endif // LEVEL

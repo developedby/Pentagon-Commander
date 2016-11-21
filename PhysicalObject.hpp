@@ -1,5 +1,6 @@
 #ifndef PHYSICALOBJECT
 #define PHYSICALOBJECT
+#endif //PHYSICALOBJECT
 
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
@@ -28,5 +29,3 @@ void PhysicalObject::setId(int _id)
 {
     id = _id;
 }
-
-#endif //PHYSICALOBJECT

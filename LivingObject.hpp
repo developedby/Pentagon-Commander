@@ -1,5 +1,6 @@
 #ifndef LIVINGOBJECT
 #define LIVINGOBJECT
+#endif // LIVINGOBJECT
 
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
@@ -55,5 +56,3 @@ bool LivingObject::getAlive()
 {
     return alive;
 }
-
-#endif // LIVINGOBJECT

@@ -1,5 +1,6 @@
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
+#endif //PENTAGONCOMMANDER_HPP
 
 float pixelsToMeters(float px);
 float metersToPixels(float m);
@@ -73,5 +74,3 @@ float metersToPixels(float m)
     pixels = m*m_to_px_fac;
     return pixels;
 }
-
-#endif //PENTAGONCOMMANDER_HPP

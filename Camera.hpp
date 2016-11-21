@@ -1,5 +1,6 @@
 #ifndef CAMERA
 #define CAMERA
+#endif //CAMERA
 
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
@@ -134,5 +135,3 @@ void Camera::record()
         independent_elements[i].printOnScreen();
     }
 }
-
-#endif //CAMERA
