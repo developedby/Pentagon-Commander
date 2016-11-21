@@ -36,9 +36,7 @@ int main()
         return -1;
 
     thelevel = Level::loadLevel("test.txt");
-
-    for(i=0; i<thelevel->getNCameras(); i++)
-        thecamera = new Camera*;
+    thecamera = new Camera*[thelevel->getNCameras()];
     for(i=0; i<thelevel->getNCameras(); i++)
         thecamera[i] = new Camera;
 
