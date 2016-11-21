@@ -20,7 +20,10 @@ const int n_commands = 0;
 #include <LivingObject.hpp>
 #endif // LIVINGOBJECT
 
-class Camera;
+#ifndef CAMERA
+#define CAMERA
+#include <Camera.hpp>
+#endif //CAMERA
 
 class Level
 {

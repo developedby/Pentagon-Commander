@@ -43,6 +43,7 @@ int main()
     thelevel->setCameras(thecamera);
     for(i=0; i<thelevel->getNCameras(); i++)
     {
+        thelevel->camera[i]->setLevel(thelevel);
         thelevel->camera[i]->setNIndependentElements(0);
         thelevel->setCameraPositionToPlayer();
         thelevel->camera[i]->createScreen();
