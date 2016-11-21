@@ -9,16 +9,7 @@ float metersToPixels(float m);
 #ifndef PROMPT
 #define PROMPT
 #include <prompt.hpp>
-
-#ifndef LEVEL
-#define LEVEL
-#include <Level.hpp>
-#endif // LEVEL
-
-#ifndef CAMERA
-#define CAMERA
-#include <Camera.hpp>
-#endif //CAMERA
+#endif // PROMPT
 
 #ifndef GRAPHICELEMENT
 #define GRAPHICELEMENT
@@ -35,6 +26,15 @@ float metersToPixels(float m);
 #include <LivingObject.hpp>
 #endif // LIVINGOBJECT
 
+#ifndef CAMERA
+#define CAMERA
+#include <Camera.hpp>
+#endif //CAMERA
+
+#ifndef LEVEL
+#define LEVEL
+#include <Level.hpp>
+#endif // LEVEL
 
 /* Variables */
 const float FPS = 60;

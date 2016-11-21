@@ -63,20 +63,10 @@ public:
 
 Level::~Level()
 {
-    int i;
     delete world;
-    for(i=0; i<n_physical_objects; i++)
-    {
-        delete[] physical_object[i];
-    }
-    for(i=0; i<n_living_objects; i++)
-    {
-        delete[] living_object[i];
-    }
-    for(i=0; i<n_players; i++)
-    {
-        delete[] player[i];
-    }
+    delete[] physical_object;
+    delete[] living_object;
+    delete[] player;
 }
 
 void Level::setCameraPositionToPlayer()
@@ -86,8 +76,8 @@ void Level::setCameraPositionToPlayer()
     {
         for(i=0; i<n_cameras; i++)
         {
-            camera[i].setLvPos(player[i].body_def.position);
-            camera[i].setWidthAndHeight(400.0,400.0); //testing
+            camera[i]->setLvPos(player[i].body_def.position);
+            camera[i]->setWidthAndHeight(400.0,400.0); //testing
         }
     }
 }
