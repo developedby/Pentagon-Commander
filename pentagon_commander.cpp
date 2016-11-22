@@ -27,28 +27,21 @@ int main()
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_SAMPLE *som=NULL;
-    int i;
 
     Level *thelevel;
-    Camera **thecamera;
 
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
         return -1;
 
     thelevel = Level::loadLevel("test.txt");
-    thecamera = new Camera*[thelevel->getNCameras()];
-    for(i=0; i<thelevel->getNCameras(); i++)
-        thecamera[i] = new Camera;
 
-    thelevel->setCameras(thecamera);
-    for(i=0; i<thelevel->getNCameras(); i++)
-    {
-        thelevel->camera[i]->setLevel(thelevel);
-        thelevel->camera[i]->setNIndependentElements(0);
-        thelevel->setCameraPositionToPlayer();
-        thelevel->camera[i]->createScreen(0,0);
-    }
-    playLevel(thelevel, &display);
+    Cameraman thecameraman(thelevel);
+
+    thecameraman.setNIndependentElements(0);
+    thecameraman.setCameraPositionToPlayer();
+    thecameraman.playLevel(display);
+
+    Sleep(100);
 
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }

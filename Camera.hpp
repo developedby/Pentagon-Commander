@@ -26,15 +26,16 @@ private:
     GraphicElement background;
     GraphicElement *independent_elements;
     int n_independent_elements;
-public:
+    void setLevel(Level *_level);
+    void setWidthAndHeight(float _px_width, float _px_height);
+    void setLvPos(b2Vec2 player_pos);
+    void createScreen(float _px_x, float _px_y);
     void setNIndependentElements(int _n_independent_elements);
     void setIndependentElements(GraphicElement *_independent_elements);
-    void createScreen(float _px_x, float _px_y);
+public:
     void record();
     void play(ALLEGRO_DISPLAY *display);
-    void setLvPos(b2Vec2 player_pos);
-    void setWidthAndHeight(float _px_width, float _px_height);
-    void setLevel(Level *_level);
+    friend class Cameraman;
 };
 
 void Camera::setLevel(Level *_level)
@@ -44,7 +45,7 @@ void Camera::setLevel(Level *_level)
 
 void Camera::setNIndependentElements(int _n_independent_elements)
 {
-    n_indenpent_elements = _n_independent_elements;
+    n_independent_elements = _n_independent_elements;
 }
 
 void Camera::setIndependentElements(GraphicElement *_independent_elements)

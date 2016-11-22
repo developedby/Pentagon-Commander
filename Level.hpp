@@ -20,8 +20,6 @@ const int n_commands = 0;
 #include <LivingObject.hpp>
 #endif // LIVINGOBJECT
 
-class Camera;
-
 class Level
 {
 private:
@@ -33,8 +31,13 @@ private:
     ALLEGRO_SAMPLE *bg_music;
     void loadPhysicalObject(ifstream *file,PhysicalObject *object,int n);
     void createWorld();
+    void setName(string _name);
+    void setNPlayers(int _n_players);
+    void setNPhysicalObjects(int _n_physical_objects);
+    void setNLivingObjects(int _n_living_objects);
+    void setNCameras(int _n_cameras);
     bool available_command[n_commands];
-    Level();
+    Level(){};
 public:
     virtual ~Level();
     LivingObject *player;
@@ -44,21 +47,12 @@ public:
     b2Vec2 gravity;
     b2World *world;
     string background_filename;
-    void setNPlayers(int _n_players);
-    void setNPhysicalObjects(int _n_physical_objects);
-    void setNLivingObjects(int _n_living_objects);
-    void setNCameras(int _n_cameras);
     int getNPlayers();
     int getNPhysicalObjects();
     int getNLivingObjects();
     int getNCameras();
-    void recordLevel();
-    void setCameras(Camera **_camera);
-    void setName(string _name);
     string getName();
-    Camera **camera;
     static Level* loadLevel(const char* filename);
-    void setCameraPositionToPlayer();
 };
 
 Level::~Level()
@@ -69,18 +63,6 @@ Level::~Level()
     delete[] player;
 }
 
-void Level::setCameraPositionToPlayer()
-{
-    int i;
-    if(n_players==n_cameras)
-    {
-        for(i=0; i<n_cameras; i++)
-        {
-            camera[i]->setLvPos(player[i].body_def.position);
-            camera[i]->setWidthAndHeight(400.0,400.0); //testing
-        }
-    }
-}
 
 void Level::createWorld()
 {
@@ -127,11 +109,6 @@ int Level::getNCameras()
     return n_cameras;
 }
 
-void Level::setCameras(Camera **_camera)
-{
-    camera = _camera;
-}
-
 void Level::setName(string _name)
 {
     name = _name;
@@ -150,7 +127,7 @@ Level* Level::loadLevel(const char* filename)
     float float_register;
     int int_register,int_register2,i;
 
-    level = new Level;
+    level = new Level();
     file.open(filename);
 
     file >> string_register;
@@ -307,8 +284,7 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             }
             object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
             object->fixture_def.shape = &object->polygon_shape;
-            for(i=0 i<n_polygon_vertices; i++)
-                delete[] polygon_vertice[i];
+            delete[] polygon_vertice;
         }
         break;
         case BOX:
