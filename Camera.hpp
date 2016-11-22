@@ -32,6 +32,7 @@ private:
     void createScreen(float _px_x, float _px_y);
     void setNIndependentElements(int _n_independent_elements);
     void setIndependentElements(GraphicElement *_independent_elements);
+    void setBackground();
 public:
     void record();
     void play(ALLEGRO_DISPLAY *display);
@@ -41,6 +42,15 @@ public:
 void Camera::setLevel(Level *_level)
 {
     level = _level;
+}
+
+void Camera::setBackground()
+{
+    background.loadSprite(level->background_filename.c_str(), 1, px_width, px_height);
+    background.setCorner(0, 0);
+    background.setFlipFlag(0);
+    background.setToBePrinted(true);
+
 }
 
 void Camera::setNIndependentElements(int _n_independent_elements)
@@ -82,7 +92,6 @@ void Camera::record()
 {
     int i;
     b2Vec2 body_pos, rect_dist;
-    background.setCorner(0, 0);
     background.setDrawingTarget(screen);
     background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)

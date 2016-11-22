@@ -58,6 +58,8 @@ void Cameraman::setCameras()
         camera[i].setLevel(level);
         camera[i].setWidthAndHeight(400, 400); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         camera[i].createScreen(0, 0); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        camera[i].setBackground();
+        camera[i].focused_player = &level->player[i];
     }
 }
 

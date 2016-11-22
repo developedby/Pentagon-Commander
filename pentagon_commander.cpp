@@ -39,9 +39,10 @@ int main()
 
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
+    thecameraman.recordLevel();
     thecameraman.playLevel(display);
 
-    Sleep(100);
+    Sleep(5000);
 
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
