@@ -20,8 +20,6 @@ const int n_commands = 0;
 #include <LivingObject.hpp>
 #endif // LIVINGOBJECT
 
-class Camera;
-
 class Level
 {
 private:
@@ -33,8 +31,13 @@ private:
     ALLEGRO_SAMPLE *bg_music;
     void loadPhysicalObject(ifstream *file,PhysicalObject *object,int n);
     void createWorld();
+    void setName(string _name);
+    void setNPlayers(int _n_players);
+    void setNPhysicalObjects(int _n_physical_objects);
+    void setNLivingObjects(int _n_living_objects);
+    void setNCameras(int _n_cameras);
     bool available_command[n_commands];
-    Level();
+    Level(){};
 public:
     virtual ~Level();
     LivingObject *player;
@@ -44,21 +47,12 @@ public:
     b2Vec2 gravity;
     b2World *world;
     string background_filename;
-    void setNPlayers(int _n_players);
-    void setNPhysicalObjects(int _n_physical_objects);
-    void setNLivingObjects(int _n_living_objects);
-    void setNCameras(int _n_cameras);
     int getNPlayers();
     int getNPhysicalObjects();
     int getNLivingObjects();
     int getNCameras();
-    void recordLevel();
-    void setCameras(Camera **_camera);
-    void setName(string _name);
     string getName();
-    Camera **camera;
     static Level* loadLevel(const char* filename);
-    void setCameraPositionToPlayer();
 };
 
 Level::~Level()
@@ -69,18 +63,6 @@ Level::~Level()
     delete[] player;
 }
 
-void Level::setCameraPositionToPlayer()
-{
-    int i;
-    if(n_players==n_cameras)
-    {
-        for(i=0; i<n_cameras; i++)
-        {
-            camera[i]->setLvPos(player[i].body_def.position);
-            camera[i]->setWidthAndHeight(400.0,400.0); //testing
-        }
-    }
-}
 
 void Level::createWorld()
 {
@@ -127,11 +109,6 @@ int Level::getNCameras()
     return n_cameras;
 }
 
-void Level::setCameras(Camera **_camera)
-{
-    camera = _camera;
-}
-
 void Level::setName(string _name)
 {
     name = _name;
@@ -150,7 +127,7 @@ Level* Level::loadLevel(const char* filename)
     float float_register;
     int int_register,int_register2,i;
 
-    level = new Level;
+    level = new Level();
     file.open(filename);
 
     file >> string_register;
@@ -240,6 +217,7 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> int_register;
     object->setId(int_register);
 
+    //body type
     (*file) >> int_register;
     switch(int_register)
     {
@@ -254,37 +232,48 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             break;
     }
 
+    //body position
     (*file) >> float_register;
     (*file) >> float_register2;
     object->body_def.position.Set(float_register, float_register2);
 
+    //body angle
     (*file) >> float_register;
     object->body_def.angle = float_register;
 
+    //body linear damping
     (*file) >> float_register;
     object->body_def.linearDamping = float_register;
 
+    //body angular damping
     (*file) >> float_register;
     object->body_def.angularDamping = float_register;
 
+    //body gravity scaling
     (*file) >> float_register;
     object->body_def.gravityScale = float_register;
 
+    //allow sleep flag
     (*file) >> int_register;
     object->body_def.allowSleep = int_register;
 
+    //awake flag
     (*file) >> int_register;
     object->body_def.awake = int_register;
 
+    //fixed rotation flag
     (*file) >> int_register;
     object->body_def.fixedRotation = int_register;
 
+    //bullet flag
     (*file) >> int_register;
     object->body_def.bullet = int_register;
 
+    //active flag
     (*file) >> int_register;
     object->body_def.active = int_register;
 
+    //Creates body using the body definition that was just loaded
     object->body = world->CreateBody(&(object->body_def));
 
     // Loads shape
@@ -294,6 +283,7 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     {
         case POLYGON:
         {
+            //Sets vertices
             int n_polygon_vertices;
             b2Vec2 *polygon_vertice;
             (*file) >> n_polygon_vertices;
@@ -307,12 +297,12 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             }
             object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
             object->fixture_def.shape = &object->polygon_shape;
-            for(i=0 i<n_polygon_vertices; i++)
-                delete[] polygon_vertice[i];
+            delete[] polygon_vertice;
         }
         break;
         case BOX:
         {
+            //Sets box size
             float half_width, half_height;
             (*file) >> half_width;
             (*file) >> half_height;
@@ -322,6 +312,7 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
         break;
         case CIRCLE:
         {
+            //Sets circle radius
             float radius;
             (*file) >> radius;
             object->circle_shape.m_radius = radius;
@@ -331,23 +322,24 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     }
 
     //Loads fixture
-    (*file) >> float_register;
+    (*file) >> float_register; //Density
     object->fixture_def.density = float_register;
 
-    (*file) >> float_register;
+    (*file) >> float_register; //Friction
     object->fixture_def.friction = float_register;
 
-    (*file) >> float_register;
+    (*file) >> float_register; //Restitution
     object->fixture_def.restitution = float_register;
 
-    (*file) >> ushort_register;
+    (*file) >> ushort_register; //Category
     object->fixture_def.filter.categoryBits = ushort_register;
 
-    (*file) >> ushort_register;
+    (*file) >> ushort_register; //Mask
     object->fixture_def.filter.maskBits = ushort_register;
 
     object->body->CreateFixture(&(object->fixture_def));
 
+    //Loads sprites
     (*file) >> string_register;
     const char *sprite_filename = string_register.c_str();
     (*file) >> int_register; //Number of Sprites
@@ -355,6 +347,6 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> float_register2; //Sprite height
     object->loadSprite(sprite_filename, int_register, float_register, float_register2);
 
-    (*file) >> int_register;
+    (*file) >> int_register; //To be printed flag
     object->setToBePrinted(int_register);
 }

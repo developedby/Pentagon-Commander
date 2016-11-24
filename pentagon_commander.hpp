@@ -36,13 +36,18 @@ float metersToPixels(float m);
 #include <Level.hpp>
 #endif // LEVEL
 
+#ifndef CAMERAMAN
+#define CAMERAMAN
+#include <Cameraman.hpp>
+#endif // CAMERAMAN
+
 /* Variables */
 const float FPS = 60;
 const int SCREEN_W = 1080;
 const int SCREEN_H = 720;
 bool comAudio = true;
-const float px_to_m_fac = 1/69;
-const float m_to_px_fac = 69;
+const float px_to_m_fac = 1.0/69.0;
+const float m_to_px_fac = 69.0;
 
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
@@ -50,16 +55,6 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
 void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 
-
-void playLevel(Level *level, ALLEGRO_DISPLAY **display)
-{
-    int i;
-    for(i=0; i<level->getNCameras(); i++)
-    {
-        level->camera[i]->record();
-        level->camera[i]->play(*display);
-    }
-}
 
 float pixelsToMeters(float px)
 {
