@@ -16,6 +16,7 @@ class Camera
 {
 private:
     b2Vec2 lv_pos;
+    //b2AABB lv_area;
     float px_x;
     float px_y;
     float px_width;
@@ -78,6 +79,9 @@ void Camera::setIndependentElements(GraphicElement *_independent_elements)
 void Camera::setLvPos(b2Vec2 player_pos)
 {
     lv_pos = player_pos;
+    /*lv_area.upperBound = player_pos;
+    lv_area.lowerBound.x = player_pos.x + pixelsToMeters(px_width);
+    lv_area.lowerBound.y = player_pos.y - pixelsToMeters(px_height);*/
 }
 
 void Camera::setWidthAndHeight(float _px_width, float _px_height)
