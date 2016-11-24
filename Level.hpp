@@ -1,6 +1,6 @@
 #ifndef LEVEL
 #define LEVEL
-#endif // LEVEL
+
 using namespace std;
 
 //useless comment
@@ -10,15 +10,8 @@ enum body_type{DYNAMIC=0,STATIC,KINEMATIC};
 const int player_default_hp = 1;
 const int n_commands = 0;
 
-#ifndef PENTAGONCOMMANDER_HPP
-#define PENTAGONCOMMANDER_HPP
-#include <PentagonCommander.hpp>
-#endif //PENTAGONCOMMANDER_HPP
-
-#ifndef LIVINGOBJECT
-#define LIVINGOBJECT
+#include <pentagon_commander.hpp>
 #include <LivingObject.hpp>
-#endif // LIVINGOBJECT
 
 class Level
 {
@@ -350,3 +343,4 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> int_register; //To be printed flag
     object->setToBePrinted(int_register);
 }
+#endif // LEVEL

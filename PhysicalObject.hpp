@@ -1,11 +1,8 @@
 #ifndef PHYSICALOBJECT
 #define PHYSICALOBJECT
-#endif //PHYSICALOBJECT
 
-#ifndef PENTAGONCOMMANDER_HPP
-#define PENTAGONCOMMANDER_HPP
-#include <PentagonCommander.hpp>
-#endif //PENTAGONCOMMANDER_HPP
+#include <pentagon_commander.hpp>
+
 
 class Level;
 
@@ -29,3 +26,4 @@ void PhysicalObject::setId(int _id)
 {
     id = _id;
 }
+#endif //PHYSICALOBJECT

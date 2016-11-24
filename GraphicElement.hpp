@@ -1,11 +1,8 @@
 #ifndef GRAPHICELEMENT
 #define GRAPHICELEMENT
-#endif //GRAPHICELEMENT
 
-#ifndef PENTAGONCOMMANDER_HPP
-#define PENTAGONCOMMANDER_HPP
-#include <PentagonCommander.hpp>
-#endif //PENTAGONCOMMANDER_HPP
+#include <pentagon_commander.hpp>
+
 
 class GraphicElement
 {
@@ -136,3 +133,4 @@ void GraphicElement::setCorner(float _px_x, float _px_y)
     px_x = _px_x;
     px_y = _px_y;
 }
+#endif //GRAPHICELEMENT

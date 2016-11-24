@@ -1,26 +1,19 @@
 #ifndef CAMERA
 #define CAMERA
-#endif //CAMERA
 
-#ifndef PENTAGONCOMMANDER_HPP
-#define PENTAGONCOMMANDER_HPP
-#include <PentagonCommander.hpp>
-#endif //PENTAGONCOMMANDER_HPP
-
-#ifndef LEVEL
+#include <pentagon_commander.hpp>
 #include <Level.hpp>
-#define LEVEL
-#endif // LEVEL
 
 class Camera
 {
 private:
-    b2Vec2 lv_pos;
-    //b2AABB lv_area;
+    b2Vec2 level_corner_position;
     float px_x;
     float px_y;
     float px_width;
     float px_height;
+    float m_width;
+    float m_height;
     LivingObject *focused_player;
     Level *level;
     ALLEGRO_BITMAP *screen;
@@ -34,6 +27,7 @@ private:
     void setNIndependentElements(int _n_independent_elements);
     void setIndependentElements(GraphicElement *_independent_elements);
     void setBackground();
+    bool objectInterceptsCamera(PhysicalObject &object);
 public:
     float getPxWidth();
     float getPxHeight();
@@ -78,16 +72,15 @@ void Camera::setIndependentElements(GraphicElement *_independent_elements)
 
 void Camera::setLvPos(b2Vec2 player_pos)
 {
-    lv_pos = player_pos;
-    /*lv_area.upperBound = player_pos;
-    lv_area.lowerBound.x = player_pos.x + pixelsToMeters(px_width);
-    lv_area.lowerBound.y = player_pos.y - pixelsToMeters(px_height);*/
+    level_corner_position = player_pos;
 }
 
 void Camera::setWidthAndHeight(float _px_width, float _px_height)
 {
     px_width = _px_width;
     px_height = _px_height;
+    m_width = pixelsToMeters(px_width);
+    m_height = pixelsToMeters(px_height);
 }
 
 void Camera::createScreen(float _px_x, float _px_y)
@@ -112,50 +105,43 @@ void Camera::record()
     background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)
     {
-        body_pos = level->physical_object[i].body->GetPosition();
-        if((body_pos.x + pixelsToMeters(level->physical_object[i].getWidth())/2.0 > lv_pos.x) || (body_pos.x - pixelsToMeters(level->physical_object[i].getWidth())/2.0 < (lv_pos.x + pixelsToMeters(px_width))))
+        if(objectInterceptsCamera(level->physical_object[i]))
         {
-            if((body_pos.y + pixelsToMeters(level->physical_object[i].getHeight()/2.0) > lv_pos.y - pixelsToMeters(px_height)) || (body_pos.y - pixelsToMeters(level->physical_object[i].getHeight()/2.0) < lv_pos.y))
-            {
-                rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
-                rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
-                level->physical_object[i].setCenter(rect_dist.x, rect_dist.y);
-                level->physical_object[i].getCornerFromCenter();
-                level->physical_object[i].setDrawingTarget(screen);
-                level->physical_object[i].printOnScreen();
-            }
+            body_pos = level->physical_object[i].body->GetPosition();
+            rect_dist.x = metersToPixels(body_pos.x - level_corner_position.x);
+            rect_dist.y = metersToPixels(level_corner_position.y - body_pos.y);
+            level->physical_object[i].setCenter(rect_dist.x, rect_dist.y);
+            level->physical_object[i].getCornerFromCenter();
+            level->physical_object[i].setDrawingTarget(screen);
+            level->physical_object[i].printOnScreen();
         }
     }
     for(i=0; i<level->getNLivingObjects(); i++)
     {
-        body_pos = level->living_object[i].body->GetPosition();
-        if((body_pos.x + pixelsToMeters(level->living_object[i].getWidth())/2.0 > lv_pos.x) || (body_pos.x - pixelsToMeters(level->living_object[i].getWidth())/2.0 < (lv_pos.x + pixelsToMeters(px_width))))
+
+        if(objectInterceptsCamera(level->living_object[i]))
         {
-            if((body_pos.y + pixelsToMeters(level->living_object[i].getHeight()/2.0) > (lv_pos.y - pixelsToMeters(px_height))) || (body_pos.y - pixelsToMeters(level->living_object[i].getHeight()/2.0) < lv_pos.y))
-            {
-                rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
-                rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
-                level->living_object[i].setCenter(rect_dist.x, rect_dist.y);
-                level->living_object[i].getCornerFromCenter();
-                level->living_object[i].setDrawingTarget(screen);
-                level->living_object[i].printOnScreen();
-            }
+            body_pos = level->living_object[i].body->GetPosition();
+            rect_dist.x = metersToPixels(body_pos.x - level_corner_position.x);
+            rect_dist.y = metersToPixels(level_corner_position.y - body_pos.y);
+            level->living_object[i].setCenter(rect_dist.x, rect_dist.y);
+            level->living_object[i].getCornerFromCenter();
+            level->living_object[i].setDrawingTarget(screen);
+            level->living_object[i].printOnScreen();
         }
     }
     for(i=0; i<level->getNPlayers(); i++)
     {
-        body_pos = level->player[i].body->GetPosition();
-        if((body_pos.x + pixelsToMeters(level->player[i].getWidth())/2.0 > lv_pos.x) || (body_pos.x - pixelsToMeters(level->player[i].getWidth())/2.0 < (lv_pos.x + pixelsToMeters(px_width))))
+
+        if(objectInterceptsCamera(level->player[i]))
         {
-            if((body_pos.y + pixelsToMeters(level->player[i].getHeight())/2.0 > lv_pos.y - pixelsToMeters(px_height)) || (body_pos.y - pixelsToMeters(level->player[i].getHeight())/2.0 < lv_pos.y))
-            {
-                rect_dist.x = metersToPixels(body_pos.x - lv_pos.x);
-                rect_dist.y = metersToPixels(lv_pos.y - body_pos.y);
-                level->player[i].setCenter(rect_dist.x, rect_dist.y);
-                level->player[i].getCornerFromCenter();
-                level->player[i].setDrawingTarget(screen);
-                level->player[i].printOnScreen();
-            }
+            body_pos = level->player[i].body->GetPosition();
+            rect_dist.x = metersToPixels(body_pos.x - level_corner_position.x);
+            rect_dist.y = metersToPixels(level_corner_position.y - body_pos.y);
+            level->player[i].setCenter(rect_dist.x, rect_dist.y);
+            level->player[i].getCornerFromCenter();
+            level->player[i].setDrawingTarget(screen);
+            level->player[i].printOnScreen();
         }
     }
     for(i=0; i<n_independent_elements; i++)
@@ -164,3 +150,31 @@ void Camera::record()
         independent_elements[i].printOnScreen();
     }
 }
+
+
+// Returns true if any point of the object is inside the camera's view. Otherwise, return false
+bool Camera::objectInterceptsCamera(PhysicalObject &object)
+{
+    b2Transform obj_t = object.body->GetTransform();
+    // Assuming each body is using only 1 fixture (as done in loadLevel)
+    b2AABB obj_aabb;
+    b2Fixture *obj_fixture = object.body->GetFixtureList();
+    const b2Shape *obj_shape = obj_fixture->GetShape();
+    const int childCount = obj_shape->GetChildCount();
+    // Calculate the fixture's AABB
+    for (int child = 0; child<childCount; ++child)
+    {
+        b2AABB shapeAABB;
+        obj_shape->ComputeAABB(&shapeAABB, obj_t, child);
+        obj_aabb.Combine(shapeAABB);
+    }
+
+    // If the AABBs intercept
+    if(obj_aabb.upperBound.x > level_corner_position.x)
+        if(obj_aabb.upperBound.y > level_corner_position.y - m_height) //Y grows up
+            if(obj_aabb.lowerBound.x < level_corner_position.x + m_width) //X grows right
+                if(obj_aabb.lowerBound.y < level_corner_position.y)
+                    return true;
+    return false;
+}
+#endif //CAMERA
