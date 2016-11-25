@@ -41,7 +41,7 @@ int main()
     thecameraman.recordLevel();
     thecameraman.playLevel(display);
 
-    Sleep(5000);
+    Sleep(2000);
 
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
