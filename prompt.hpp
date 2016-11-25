@@ -63,7 +63,7 @@ void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
     if(event->type == ALLEGRO_KEY_UP)
         pressed_character = event->keyboard.keycode;
     else
-        pressed_character = 0;
+        pressed_character = -1;
 }
 
 #endif //PROMPT

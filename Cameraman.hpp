@@ -56,8 +56,7 @@ void Cameraman::setCameras()
     for(i=0; i<n_cameras; i++)
     {
         camera[i].setLevel(level);
-        camera[i].setWidthAndHeight(400, 400); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        camera[i].createScreen(0, 0); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        camera[i].createScreen(0, 0, 400, 400); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         camera[i].setBackground();
         camera[i].focused_player = &level->player[i];
     }
@@ -73,7 +72,7 @@ void Cameraman::setCameraPositionToPlayer()
         {
             center_to_corner.x = -pixelsToMeters(camera[i].getPxWidth())/2.0;
             center_to_corner.y = pixelsToMeters(camera[i].getPxHeight())/2.0;
-            camera[i].setLvPos(level->player[i].body_def.position + center_to_corner);
+            camera[i].setLvPos(camera[i].focused_player->body_def.position + center_to_corner);
         }
     }
 }

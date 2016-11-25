@@ -27,9 +27,6 @@ int main()
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_SAMPLE *som=NULL;
-    b2Vec2 increment;//TESTE
-    increment.x = 100;
-    increment.y = -100;
     Level *thelevel;
 
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
@@ -41,7 +38,6 @@ int main()
 
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
-    thelevel->player[0].body_def.position += increment;//TESTE
     thecameraman.recordLevel();
     thecameraman.playLevel(display);
 

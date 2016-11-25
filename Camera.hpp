@@ -23,7 +23,7 @@ private:
     void setLevel(Level *_level);
     void setWidthAndHeight(float _px_width, float _px_height);
     void setLvPos(b2Vec2 player_pos);
-    void createScreen(float _px_x, float _px_y);
+    void createScreen(float _px_x, float _px_y, float _px_width, float _px_height);
     void setNIndependentElements(int _n_independent_elements);
     void setIndependentElements(GraphicElement *_independent_elements);
     void setBackground();
@@ -83,10 +83,14 @@ void Camera::setWidthAndHeight(float _px_width, float _px_height)
     m_height = pixelsToMeters(px_height);
 }
 
-void Camera::createScreen(float _px_x, float _px_y)
+void Camera::createScreen(float _px_x, float _px_y, float _px_width, float _px_height)
 {
     px_x = _px_x;
     px_y = _px_y;
+    px_width = _px_width;
+    px_height = _px_height;
+    m_width = pixelsToMeters(px_width);
+    m_height = pixelsToMeters(px_height);
     screen = al_create_bitmap(px_width, px_height);
 }
 
