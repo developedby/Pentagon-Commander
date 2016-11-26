@@ -1,19 +1,6 @@
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
 
-
-float pixelsToMeters(float px);
-float metersToPixels(float m);
-
-#include <prompt.hpp>
-#include <GraphicElement.hpp>
-#include <PhysicalObject.hpp>
-#include <LivingObject.hpp>
-#include <Camera.hpp>
-#include <Level.hpp>
-#include <Cameraman.hpp>
-
-
 /* Variables */
 const float FPS = 60;
 const int SCREEN_W = 1080;
@@ -27,7 +14,16 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
+float pixelsToMeters(float px);
+float metersToPixels(float m);
 
+#include <prompt.hpp>
+#include <GraphicElement.hpp>
+#include <PhysicalObject.hpp>
+#include <LivingObject.hpp>
+#include <Camera.hpp>
+#include <Level.hpp>
+#include <Cameraman.hpp>
 
 float pixelsToMeters(float px)
 {

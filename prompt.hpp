@@ -1,14 +1,20 @@
 #ifndef PROMPT
 #define PROMPT
 
-
+#include <pentagon_commander.hpp>
 /*#ifndef STRING
 #include <string>
 #define STRING
 #endif // STRING*/
 
+#define MAX_LOG_LINES 500
 
 bool key[ALLEGRO_KEY_MAX];
+const float prompt_width = 500; //Numero qualquer, trocar depois
+const float prompt_height = 100;
+const float log_width = 500;
+const float log_height = 500;
+
 
 using namespace std;
 
@@ -16,7 +22,7 @@ class Prompt
 {
 private:
     static Prompt *object;
-    string *log[500];
+    string *log[MAX_LOG_LINES];
     string current_line;
     string feedback_line;
     int pressed_character;
@@ -33,7 +39,7 @@ private:
     int log_pos;
     bool show_log;
     int n_log_lines;
-    Prompt(){};
+    Prompt();
 public:
     virtual ~Prompt();
     void printLine();
@@ -57,10 +63,25 @@ Prompt* Prompt::getPrompt()
     if(object == nullptr)
     {
         object = new Prompt();
-        object->n_log_lines = 0;
-        object->show_log = false;
     }
     return object;
+}
+
+Prompt::Prompt()
+{
+    int i;
+    n_log_lines = 0;
+    show_log = false;
+    for(i=0; i<MAX_LOG_LINES; i++)
+        log[i]->clear();
+    current_line.clear();
+    feedback_line.clear();
+    x = 0;
+    log_x = 0;
+    y = SCREEN_H - height;
+    log_y = y - log_y;
+    pressed_character = -1;
+    //Add bitmap creation;
 }
 
 void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
@@ -201,10 +222,12 @@ void Prompt::processPressedCharacter()
                 show_log = !show_log;
                 break;
             case ALLEGRO_KEY_UP:
-                log_pos++;
+                if(log_pos < n_log_lines)
+                    log_pos++;
                 break;
             case ALLEGRO_KEY_DOWN:
-                log_pos--;
+                if(log_pos > 0)
+                    log_pos--;
                 break;
             default:
                 break;
