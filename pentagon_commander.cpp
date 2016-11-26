@@ -27,16 +27,41 @@ int main()
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
         return -1;
 
-    thelevel = Level::loadLevel("test.txt");
+    thelevel = Level::loadLevel("test.pcl");
 
     Cameraman thecameraman(thelevel);
-
+    Prompt *theprompt = Prompt::getPrompt();
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
-    thecameraman.recordLevel();
-    thecameraman.playLevel(display);
 
-    Sleep(2000);
+    b2Vec2 temp;
+    while(1)
+    {
+        ALLEGRO_EVENT event;
+        al_wait_for_event(event_queue, &event);
+        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_D)
+            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (5000.0,0.0), b2Vec2 (0.0,0.0), true);
+        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_A)
+            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (-5000.0,0.0), b2Vec2 (0.0,0.0), true);
+        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_W)
+            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (0.0,10000.0), b2Vec2 (0.0,0.0), true);
+        if(event.type == ALLEGRO_EVENT_TIMER)
+        {
+            thelevel->world->Step(time_step, velocity_iterations, position_iterations);
+            al_set_target_bitmap(al_get_backbuffer(display));
+            al_clear_to_color(al_map_rgb(0,0,0));
+            thecameraman.recordLevel();
+            thecameraman.playLevel(display);
+            theprompt->processPressedCharacter();
+            theprompt->printPrompt(display, font);
+            temp = thelevel->player[0].body->GetPosition();
+            al_flip_display();
+            cout << "player" << temp.x << ' ' << temp.y << endl;
+        }
+        else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+            break;
+        theprompt->setPressedCharacter(&event);
+    }
 
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
@@ -58,7 +83,6 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
       cout << "failed to initialize the al_init_image_addon!\n";
       return -1;
    }
-
 
    if(!al_install_audio()){
       comAudio = false;
@@ -105,24 +129,8 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
       return -1;
    }
 
-    // Torna apto o uso de mouse na aplicação
-    if (!al_install_mouse())
-    {
-        cout << "Falha ao inicializar o mouse.\n";
-        return -1;
-    }
-
-    // Atribui o cursor padrão do sistema para ser usado
-    if (!al_set_system_mouse_cursor(*display, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT))
-    {
-        cout << "Falha ao atribuir ponteiro do mouse.\n";
-        return -1;
-    }
-
     // Configura o título da janela
-    al_set_window_title(*display, "Meu Jogo");
-
-    ///
+    al_set_window_title(*display, "Pentagon Commander");
 
 
    *event_queue = al_create_event_queue();
@@ -135,13 +143,7 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
    al_register_event_source(*event_queue, al_get_display_event_source(*display));
    al_register_event_source(*event_queue, al_get_timer_event_source(*timer));
    al_register_event_source(*event_queue, al_get_keyboard_event_source());
-   al_register_event_source(*event_queue, al_get_mouse_event_source());
-
-   //Voltamos a alterar o display e limpamos a tela
-   al_set_target_bitmap(al_get_backbuffer(*display));
-   al_clear_to_color(al_map_rgb(0,0,0));
-   al_flip_display();
-   ////
+   //al_register_event_source(*event_queue, al_get_mouse_event_source());
 
    al_start_timer(*timer);
    return 1;

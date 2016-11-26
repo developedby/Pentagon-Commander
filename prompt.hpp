@@ -6,11 +6,10 @@
 #define MAX_LOG_LINES 500
 
 bool key[ALLEGRO_KEY_MAX];
-const float prompt_width = 500.0; //Numero qualquer, trocar depois
-const float prompt_height = 100.0;
-const float log_width = 500.0;
-const float log_height = SCREEN_H - prompt_height;
 
+const float line_offset = 18.0;
+const float base_line_offset = 10.0;
+const float log_offset = 10.0;
 
 using namespace std;
 
@@ -24,15 +23,7 @@ private:
     int pressed_character;
     ALLEGRO_BITMAP *screen;
     GraphicElement prompt_box;
-    float width;
-    float height;
-    float x;
-    float y;
     GraphicElement log_box;
-    float log_width;
-    float log_height;
-    float log_x;
-    float log_y;
     int log_pos;
     bool show_log;
     int n_log_lines;
@@ -47,28 +38,28 @@ public:
     void processPressedCharacter();
 };
 
+Prompt* Prompt::object = nullptr;
+
 void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
 {
-    prompt_box.printOnScreen();
     al_set_target_bitmap(screen);
     al_clear_to_color(al_map_rgba(0,0,0,0));
-    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - font_size - 2, ALLEGRO_ALIGN_LEFT, current_line.c_str());
-    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 3*(font_size - 2), ALLEGRO_ALIGN_LEFT, feedback_line.c_str());
-    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 4*(font_size - 2), ALLEGRO_ALIGN_LEFT, log[0].c_str());
+    prompt_box.printOnScreen();
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - font_size - base_line_offset, ALLEGRO_ALIGN_LEFT, current_line.c_str());
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 1*(font_size + line_offset) - base_line_offset, ALLEGRO_ALIGN_LEFT, feedback_line.c_str());
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 2*(font_size + line_offset) - base_line_offset, ALLEGRO_ALIGN_LEFT, log[0].c_str());
     if(show_log)
     {
         log_box.printOnScreen();
         al_set_target_bitmap(screen);
         for(int i=log_pos; i<n_log_lines; i++)
         {
-            al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - (6+i)*(font_size - 2), ALLEGRO_ALIGN_LEFT, current_line.c_str());
+            al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - (3+i)*(font_size + line_offset) - base_line_offset - log_offset, ALLEGRO_ALIGN_LEFT, log[i].c_str());
         }
     }
     al_set_target_bitmap(al_get_backbuffer(display));
     al_draw_bitmap(screen, 0, 0, 0);
 }
-
-Prompt* Prompt::object = nullptr;
 
 Prompt::~Prompt()
 {
@@ -84,7 +75,7 @@ Prompt* Prompt::getPrompt()
     return object;
 }
 
-Prompt::Prompt()
+Prompt::Prompt() : prompt_box(0.0,log_height), log_box(0.0,0.0)
 {
     int i;
     n_log_lines = 0;
@@ -96,22 +87,19 @@ Prompt::Prompt()
     }
     current_line.clear();
     feedback_line.clear();
-    x = 0;
-    log_x = 0;
-    y = SCREEN_H - height;
-    log_y = y - log_y;
     pressed_character = -1;
     screen = al_create_bitmap(log_width, log_height + prompt_height);
     prompt_box.loadSprite("prompt_box.png", 1, prompt_width, prompt_height);
     log_box.loadSprite("log_box.png", 1, log_width, log_height);
     prompt_box.setDrawingTarget(screen);
     log_box.setDrawingTarget(screen);
-    //Add bitmap creation;
+    prompt_box.setToBePrinted(true);
+    log_box.setToBePrinted(false);
 }
 
 void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
 {
-    if(event->type == ALLEGRO_KEY_UP)
+    if(event->type == ALLEGRO_EVENT_KEY_UP)
         pressed_character = event->keyboard.keycode;
     else
         pressed_character = -1;
@@ -240,8 +228,8 @@ void Prompt::processPressedCharacter()
             case ALLEGRO_KEY_ENTER:
             {
                 int i;
-                for(i=0; i<n_log_lines; i++)
-                    log[i+1] = log[i];
+                for(i=n_log_lines; i>0; i--)
+                    log[i] = log[i-1];
                 log[0] = current_line;
                 n_log_lines++;
                 //send command
@@ -251,6 +239,7 @@ void Prompt::processPressedCharacter()
                 break;
             case ALLEGRO_KEY_TAB:
                 show_log = !show_log;
+                log_box.setToBePrinted(show_log);
                 break;
             case ALLEGRO_KEY_UP:
                 if(log_pos < n_log_lines)

@@ -8,7 +8,15 @@ const int SCREEN_H = 720;
 bool comAudio = true;
 const float px_to_m_fac = 1.0/69.0;
 const float m_to_px_fac = 69.0;
-const int font_size = 10;
+const int font_size = 20;
+float time_step = 1.0/60.0;
+int velocity_iterations = 8;
+int position_iterations = 3;
+const float prompt_width = (float)SCREEN_W;
+const float prompt_height = 100.0;
+const float log_width = (float)SCREEN_W;
+const float log_height = (float)SCREEN_H - prompt_height;
+const float player_max_speed = 1.0/15.0;
 
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,

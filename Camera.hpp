@@ -8,6 +8,7 @@ class Camera
 {
 private:
     b2Vec2 level_corner_position;
+    b2Vec2 level_velocity;
     float px_x;
     float px_y;
     float px_width;
@@ -28,6 +29,7 @@ private:
     void setIndependentElements(GraphicElement *_independent_elements);
     void setBackground();
     bool objectInterceptsCamera(PhysicalObject &object);
+    void followPlayer();
 public:
     float getPxWidth();
     float getPxHeight();
@@ -58,6 +60,18 @@ void Camera::setBackground()
     background.setFlipFlag(0);
     background.setToBePrinted(true);
 
+}
+
+void Camera::followPlayer()
+{
+    b2Vec2 player_distance = focused_player->body->GetPosition() - (level_corner_position + b2Vec2(m_width/2, -m_height/2));
+    if(player_distance.Length()>pixelsToMeters(1))
+    {
+        level_velocity = (player_max_speed/8.0)*player_distance;
+    }
+    else
+        level_velocity = b2Vec2(0,0);
+    level_corner_position = level_corner_position + level_velocity;
 }
 
 void Camera::setNIndependentElements(int _n_independent_elements)
@@ -98,13 +112,14 @@ void Camera::play(ALLEGRO_DISPLAY *display)
 {
     al_set_target_bitmap(al_get_backbuffer(display));
     al_draw_bitmap(screen, px_x, px_y, 0);
-    al_flip_display();
 }
 
 void Camera::record()
 {
     int i;
     b2Vec2 body_pos, rect_dist;
+    followPlayer();
+    cout << "camera" << level_corner_position.x << ' ' << level_corner_position.y << endl;
     background.setDrawingTarget(screen);
     background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)

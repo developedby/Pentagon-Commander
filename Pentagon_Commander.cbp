@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Caixa_de_texto" />
+		<Option title="Pentagon Commander" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -22,7 +22,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add option="`pkg-config allegro-5.0 allegro_primitives-5.0 allegro_audio-5.0 allegro_acodec-5.0 allegro_color-5.0 allegro_font-5.0 allegro_image-5.0  allegro_main-5.0 allegro_memfile-5.0 allegro_ttf-5.0 --libs`" />
-					<Add library="libs\allegro-5.0.10-mingw-4.7.0\lib\liballegro-5.0.10-monolith-mt.a" />
+					<Add library="libs/allegro-5.0.10-mingw-4.7.0/lib/liballegro-5.0.10-monolith-mt.a" />
 					<Add directory="libs/allegro-5.0.10-mingw-4.7.0/lib" />
 					<Add directory="Box2D" />
 				</Linker>

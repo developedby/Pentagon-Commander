@@ -30,16 +30,28 @@ public:
     float getHeight();
     float getWidth();
     GraphicElement();
+    GraphicElement(float _px_x, float _px_y);
     ~GraphicElement();
     void setCenter(float _px_center_x, float _px_center_y);
     void setCorner(float _px_x, float _px_y);
 };
+
+GraphicElement::GraphicElement(float _px_x, float _px_y)
+{
+    sprite = nullptr;
+    current_sprite = 0;
+    flip_flag = 0;
+    to_be_printed = true;
+    px_x = _px_x;
+    px_y = _px_y;
+}
 
 GraphicElement::GraphicElement()
 {
     sprite = nullptr;
     current_sprite = 0;
     flip_flag = 0;
+    to_be_printed = true;
 }
 
 GraphicElement::~GraphicElement()

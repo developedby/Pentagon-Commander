@@ -56,7 +56,22 @@ void Cameraman::setCameras()
     for(i=0; i<n_cameras; i++)
     {
         camera[i].setLevel(level);
-        camera[i].createScreen(0, 0, 400, 400); //Teste!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        switch(n_cameras)
+        {
+            case 1:
+                camera[i].createScreen(0, 0, SCREEN_W, SCREEN_H - prompt_height);
+                break;
+            case 2:
+                camera[i].createScreen(i*SCREEN_W/2, 0, SCREEN_W/2, SCREEN_H - prompt_height);
+                break;
+            case 3:
+                camera[i].createScreen(i/2 ? SCREEN_W/4 : i*SCREEN_W/2, i/2 ? (SCREEN_H - prompt_height)/2 : 0, SCREEN_W/2, (SCREEN_H - prompt_height)/2);
+                break;
+            case 4:
+                camera[i].createScreen(i%2 ? SCREEN_W/2 : 0, i/2 ? (SCREEN_H - prompt_height)/2 : 0, SCREEN_W/2, (SCREEN_H - prompt_height)/2);
+                break;
+        }
+
         camera[i].setBackground();
         camera[i].focused_player = &level->player[i];
     }
