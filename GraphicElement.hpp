@@ -83,7 +83,8 @@ void GraphicElement::setFlipFlag(int flag)
 
 void GraphicElement::setCurrentSprite(int n)
 {
-    current_sprite = n;
+    if(n>= 0 && n <= n_sprites)
+        current_sprite = n;
 }
 
 void GraphicElement::loadSprite(const char *sprites_filename, int _n_sprites, float _px_width, float _px_height)

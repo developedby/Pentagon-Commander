@@ -8,6 +8,7 @@ const int SCREEN_H = 720;
 bool comAudio = true;
 const float px_to_m_fac = 1.0/69.0;
 const float m_to_px_fac = 69.0;
+const int font_size = 10;
 
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
@@ -17,8 +18,8 @@ void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue
 float pixelsToMeters(float px);
 float metersToPixels(float m);
 
-#include <prompt.hpp>
 #include <GraphicElement.hpp>
+#include <prompt.hpp>
 #include <PhysicalObject.hpp>
 #include <LivingObject.hpp>
 #include <Camera.hpp>

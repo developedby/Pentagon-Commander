@@ -3,11 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-#ifndef STRING
-#include <string>
-#define STRING
-#endif // STRING
-
 #include <time.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -26,7 +21,7 @@ int main()
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_FONT *font = NULL;
-    ALLEGRO_SAMPLE *som=NULL;
+    ALLEGRO_SAMPLE *som = NULL;
     Level *thelevel;
 
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
@@ -91,7 +86,7 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
        }
    }*/
 
-   *font = al_load_ttf_font("DroidSans.ttf",10,0 );
+   *font = al_load_ttf_font("DroidSans.ttf",font_size,0);
 
    if (!*font){
       cout << "Could not load 'DroidSans.ttf'.\n";

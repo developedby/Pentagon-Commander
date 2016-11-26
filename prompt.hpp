@@ -2,18 +2,14 @@
 #define PROMPT
 
 #include <pentagon_commander.hpp>
-/*#ifndef STRING
-#include <string>
-#define STRING
-#endif // STRING*/
 
 #define MAX_LOG_LINES 500
 
 bool key[ALLEGRO_KEY_MAX];
-const float prompt_width = 500; //Numero qualquer, trocar depois
-const float prompt_height = 100;
-const float log_width = 500;
-const float log_height = 500;
+const float prompt_width = 500.0; //Numero qualquer, trocar depois
+const float prompt_height = 100.0;
+const float log_width = 500.0;
+const float log_height = SCREEN_H - prompt_height;
 
 
 using namespace std;
@@ -22,16 +18,17 @@ class Prompt
 {
 private:
     static Prompt *object;
-    string *log[MAX_LOG_LINES];
+    string log[MAX_LOG_LINES];
     string current_line;
     string feedback_line;
     int pressed_character;
-    ALLEGRO_BITMAP *bitmap;
+    ALLEGRO_BITMAP *screen;
+    GraphicElement prompt_box;
     float width;
     float height;
     float x;
     float y;
-    ALLEGRO_BITMAP *log_bitmap;
+    GraphicElement log_box;
     float log_width;
     float log_height;
     float log_x;
@@ -42,14 +39,34 @@ private:
     Prompt();
 public:
     virtual ~Prompt();
-    void printLine();
-    void feedLine();
+    void printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font);
     void setShowLog();
     bool getShowLog();
     static Prompt* getPrompt();
     void setPressedCharacter(ALLEGRO_EVENT *event);
     void processPressedCharacter();
 };
+
+void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
+{
+    prompt_box.printOnScreen();
+    al_set_target_bitmap(screen);
+    al_clear_to_color(al_map_rgba(0,0,0,0));
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - font_size - 2, ALLEGRO_ALIGN_LEFT, current_line.c_str());
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 3*(font_size - 2), ALLEGRO_ALIGN_LEFT, feedback_line.c_str());
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 4*(font_size - 2), ALLEGRO_ALIGN_LEFT, log[0].c_str());
+    if(show_log)
+    {
+        log_box.printOnScreen();
+        al_set_target_bitmap(screen);
+        for(int i=log_pos; i<n_log_lines; i++)
+        {
+            al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - (6+i)*(font_size - 2), ALLEGRO_ALIGN_LEFT, current_line.c_str());
+        }
+    }
+    al_set_target_bitmap(al_get_backbuffer(display));
+    al_draw_bitmap(screen, 0, 0, 0);
+}
 
 Prompt* Prompt::object = nullptr;
 
@@ -71,9 +88,12 @@ Prompt::Prompt()
 {
     int i;
     n_log_lines = 0;
+    log_pos = 0;
     show_log = false;
     for(i=0; i<MAX_LOG_LINES; i++)
-        log[i]->clear();
+    {
+        log[i].clear();
+    }
     current_line.clear();
     feedback_line.clear();
     x = 0;
@@ -81,6 +101,11 @@ Prompt::Prompt()
     y = SCREEN_H - height;
     log_y = y - log_y;
     pressed_character = -1;
+    screen = al_create_bitmap(log_width, log_height + prompt_height);
+    prompt_box.loadSprite("prompt_box.png", 1, prompt_width, prompt_height);
+    log_box.loadSprite("log_box.png", 1, log_width, log_height);
+    prompt_box.setDrawingTarget(screen);
+    log_box.setDrawingTarget(screen);
     //Add bitmap creation;
 }
 
@@ -213,10 +238,16 @@ void Prompt::processPressedCharacter()
                 current_line.pop_back();
                 break;
             case ALLEGRO_KEY_ENTER:
-                //write logs
+            {
+                int i;
+                for(i=0; i<n_log_lines; i++)
+                    log[i+1] = log[i];
+                log[0] = current_line;
+                n_log_lines++;
                 //send command
                 current_line.clear();
                 //write feedback
+            }
                 break;
             case ALLEGRO_KEY_TAB:
                 show_log = !show_log;
