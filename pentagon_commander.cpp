@@ -32,6 +32,7 @@ int main()
 
     Cameraman thecameraman(thelevel);
     Prompt *theprompt = Prompt::getPrompt();
+    theprompt->interpreter->setLevel(thelevel);
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
 
@@ -40,12 +41,12 @@ int main()
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
-        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_D)
+        /*if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_D)
             thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (5000.0,0.0), b2Vec2 (0.0,0.0), true);
         if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_A)
             thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (-5000.0,0.0), b2Vec2 (0.0,0.0), true);
         if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_W)
-            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (0.0,10000.0), b2Vec2 (0.0,0.0), true);
+            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (0.0,10000.0), b2Vec2 (0.0,0.0), true);*/
         if(event.type == ALLEGRO_EVENT_TIMER)
         {
             thelevel->world->Step(time_step, velocity_iterations, position_iterations);

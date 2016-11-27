@@ -2,8 +2,7 @@
 #define PROMPT
 
 #include <pentagon_commander.hpp>
-
-class Interpreter;
+#include <Interpreter.hpp>
 
 #define MAX_LOG_LINES 500
 
@@ -19,7 +18,6 @@ class Prompt
 {
 private:
     static Prompt *instance;
-    Interpreter *interpreter;
     string log[MAX_LOG_LINES];
     string current_line;
     string feedback_line;
@@ -39,8 +37,8 @@ public:
     static Prompt* getPrompt();
     void setPressedCharacter(ALLEGRO_EVENT *event);
     void processPressedCharacter();
-    void setInterpreter(Interpreter* _interpreter);
-    Interpreter* getInterpreter();
+    Interpreter *interpreter;
+    string getCurrentLine();
 };
 
 Prompt* Prompt::instance = nullptr;
@@ -93,6 +91,7 @@ Prompt::Prompt() : prompt_box(0.0,log_height), log_box(0.0,0.0)
     current_line.clear();
     feedback_line.clear();
     pressed_character = -1;
+
     screen = al_create_bitmap(log_width, log_height + prompt_height);
     prompt_box.loadSprite("prompt_box.png", 1, prompt_width, prompt_height);
     log_box.loadSprite("log_box.png", 1, log_width, log_height);
@@ -100,16 +99,13 @@ Prompt::Prompt() : prompt_box(0.0,log_height), log_box(0.0,0.0)
     log_box.setDrawingTarget(screen);
     prompt_box.setToBePrinted(true);
     log_box.setToBePrinted(false);
+
+    interpreter = Interpreter::getInterpreter();
 }
 
-void Prompt::setInterpreter(Interpreter* _interpreter)
+string Prompt::getCurrentLine()
 {
-    interpreter = _interpreter;
-}
-
-Interpreter* Prompt::getInterpreter()
-{
-    return interpreter;
+    return current_line;
 }
 
 void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
@@ -247,9 +243,9 @@ void Prompt::processPressedCharacter()
                     log[i] = log[i-1];
                 log[0] = current_line;
                 n_log_lines++;
-                //send command
                 current_line.clear();
-                //write feedback
+                feedback_line.clear();
+                feedback_line = interpreter->interpret(current_line);
             }
                 break;
             case ALLEGRO_KEY_TAB:

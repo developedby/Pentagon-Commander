@@ -9,7 +9,7 @@ enum shape_type{POLYGON=0,BOX,CIRCLE};
 
 enum body_type{DYNAMIC=0,STATIC,KINEMATIC};
 const int player_default_hp = 1;
-const int n_commands = 0;
+const int n_commands = 3;
 
 #include <pentagon_commander.hpp>
 #include <LivingObject.hpp>

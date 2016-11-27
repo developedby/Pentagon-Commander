@@ -2,23 +2,27 @@
 #define INTERPRETER
 
 #include <pentagon_commander.hpp>
-#include <prompt.hpp>
 #include <Level.hpp>
+
+enum command_execution{e_executed = 1, e_syntax_error, e_unknown_error};
 
 class Interpreter
 {
 private:
     static Interpreter* instance;
-    Prompt* prompt;
     Level* level;
+    string word;
+    string answer;
+    bool done;
     Interpreter();
 public:
     ~Interpreter();
     static Interpreter* getInterpreter();
     void setLevel(Level* _level);
-    string walk(string command);
-    string jump(string command);
-    string stop(string command);
+    string interpret(string command);
+    command_execution walk(istringstream &iss);
+    command_execution jump(istringstream &iss);
+    command_execution stop(istringstream &iss);
 };
 
 Interpreter* Interpreter::instance = nullptr;
@@ -32,8 +36,7 @@ Interpreter* Interpreter::getInterpreter()
 
 Interpreter::Interpreter()
 {
-    prompt = Prompt::getPrompt();
-    prompt->setInterpreter(this);
+    level = nullptr;
 }
 
 Interpreter::~Interpreter()
@@ -46,23 +49,67 @@ void Interpreter::setLevel(Level* _level)
     level = _level;
 }
 
+string Interpreter::interpret(string command)
+{
+    done = false;
+    istringstream iss(command);
+    command_execution status;
+    iss >> word;
+    if(word == "walk")
+    {
+        walk(iss);
+        return answer;
+    }
+    else if(word == "jump")
+    {
+        jump(iss);
+        return answer;
+    }
+    else if(word == "stop")
+    {
+        stop(iss);
+        return answer;
+    }
+    else
+    {
+        answer = "Syntax Error - Command unknown";
+    }
+    return "unknown error uWu";
+}
+
 ///Commands
 
-string Interpreter::walk(string command)
+command_execution Interpreter::walk(istringstream &iss)
 {
-    istringstream iss(command);
-    string word;
     iss >> word;
-    if(word.compare("walk"))
+    if(word.compare("right"))
     {
-        iss >> word;
-        if(word.compare("right"))
-            level->player[0]->body->ApplyLinearImpulseToCenter());
-        else if(word.compare("left"))
-            level->player[0]
+        level->player[0].body->SetLinearVelocity(b2Vec2(player_max_speed, level->player[0].body->GetLinearVelocity().y));
+        answer = "moving right";
+        return e_executed;
     }
+    else if(word.compare("left"))
+    {
+        level->player[0].body->SetLinearVelocity(b2Vec2(-player_max_speed, level->player[0].body->GetLinearVelocity().y));
+        answer = "moving left";
+        return e_executed;
+    }
+    else
+        return e_syntax_error;
+    answer = "unknown error 0x0";
+    return e_unknown_error;
 }
-string Interpreter::jump(string command);
-string Interpreter::stop(string command);
+command_execution Interpreter::jump(istringstream &iss)
+{
+    level->player[0].body->SetLinearVelocity(b2Vec2(level->player[0].body->GetLinearVelocity().x, player_max_speed));
+    answer = "jumped";
+    return e_executed;
+}
+command_execution Interpreter::stop(istringstream &iss)
+{
+    level->player[0].body->SetLinearVelocity(b2Vec2(0, 0));
+    answer = "stopped";
+    return e_executed;
+}
 
 #endif // INTERPRETER

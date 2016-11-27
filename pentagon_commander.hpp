@@ -1,6 +1,11 @@
 #ifndef PENTAGONCOMMANDER_HPP
 #define PENTAGONCOMMANDER_HPP
 
+enum commands
+{
+    e_stop = 0, e_walk, e_jump
+};
+
 /* Variables */
 const float FPS = 60;
 const int SCREEN_W = 1080;
@@ -28,12 +33,12 @@ float metersToPixels(float m);
 
 #include <Box2D.h>
 #include <GraphicElement.hpp>
-#include <prompt.hpp>
 #include <PhysicalObject.hpp>
 #include <LivingObject.hpp>
 #include <Camera.hpp>
 #include <Level.hpp>
 #include <Cameraman.hpp>
+#include <prompt.hpp>
 #include <Interpreter.hpp>
 
 float pixelsToMeters(float px)

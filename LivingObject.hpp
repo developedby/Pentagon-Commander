@@ -2,6 +2,7 @@
 #define LIVINGOBJECT
 
 #include <pentagon_commander.hpp>
+#include <PhysicalObject.hpp>
 
 class LivingObject : public PhysicalObject
 {

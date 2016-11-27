@@ -2,7 +2,7 @@
 #define PHYSICALOBJECT
 
 #include <pentagon_commander.hpp>
-
+#include <GraphicElement.hpp>
 
 class Level;
 
