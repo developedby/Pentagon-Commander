@@ -67,7 +67,7 @@ void Camera::followPlayer()
     b2Vec2 player_distance = focused_player->body->GetPosition() - (level_corner_position + b2Vec2(m_width/2, -m_height/2));
     if(player_distance.Length()>pixelsToMeters(1))
     {
-        level_velocity = (player_max_speed/8.0)*player_distance;
+        level_velocity = (player_max_speed)*player_distance;
     }
     else
         level_velocity = b2Vec2(0,0);

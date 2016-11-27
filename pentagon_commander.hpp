@@ -34,6 +34,7 @@ float metersToPixels(float m);
 #include <Camera.hpp>
 #include <Level.hpp>
 #include <Cameraman.hpp>
+#include <Interpreter.hpp>
 
 float pixelsToMeters(float px)
 {

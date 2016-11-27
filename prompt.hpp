@@ -3,6 +3,8 @@
 
 #include <pentagon_commander.hpp>
 
+class Interpreter;
+
 #define MAX_LOG_LINES 500
 
 bool key[ALLEGRO_KEY_MAX];
@@ -16,7 +18,8 @@ using namespace std;
 class Prompt
 {
 private:
-    static Prompt *object;
+    static Prompt *instance;
+    Interpreter *interpreter;
     string log[MAX_LOG_LINES];
     string current_line;
     string feedback_line;
@@ -36,9 +39,11 @@ public:
     static Prompt* getPrompt();
     void setPressedCharacter(ALLEGRO_EVENT *event);
     void processPressedCharacter();
+    void setInterpreter(Interpreter* _interpreter);
+    Interpreter* getInterpreter();
 };
 
-Prompt* Prompt::object = nullptr;
+Prompt* Prompt::instance = nullptr;
 
 void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
 {
@@ -63,16 +68,16 @@ void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
 
 Prompt::~Prompt()
 {
-    delete object;
+    delete instance;
 }
 
 Prompt* Prompt::getPrompt()
 {
-    if(object == nullptr)
+    if(instance == nullptr)
     {
-        object = new Prompt();
+        instance = new Prompt();
     }
-    return object;
+    return instance;
 }
 
 Prompt::Prompt() : prompt_box(0.0,log_height), log_box(0.0,0.0)
@@ -95,6 +100,16 @@ Prompt::Prompt() : prompt_box(0.0,log_height), log_box(0.0,0.0)
     log_box.setDrawingTarget(screen);
     prompt_box.setToBePrinted(true);
     log_box.setToBePrinted(false);
+}
+
+void Prompt::setInterpreter(Interpreter* _interpreter)
+{
+    interpreter = _interpreter;
+}
+
+Interpreter* Prompt::getInterpreter()
+{
+    return interpreter;
 }
 
 void Prompt::setPressedCharacter(ALLEGRO_EVENT *event)
