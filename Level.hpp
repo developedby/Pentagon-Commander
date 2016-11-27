@@ -6,6 +6,7 @@ using namespace std;
 //useless comment
 
 enum shape_type{POLYGON=0,BOX,CIRCLE};
+
 enum body_type{DYNAMIC=0,STATIC,KINEMATIC};
 const int player_default_hp = 1;
 const int n_commands = 0;
@@ -157,7 +158,7 @@ Level* Level::loadLevel(const char* filename)
 
     for(i=0;i<int_register;i++)
     {
-        level->player[i].setMaxHp(player_default_hp);
+        level->player[i].setMaxHp(player_default_hp, player_default_hp);
         level->player[i].setAlive(true);
         level->loadPhysicalObject(&file,level->player,i);
     }
@@ -170,7 +171,7 @@ Level* Level::loadLevel(const char* filename)
     for(i=0;i<int_register;i++)
     {
         file >> int_register2;
-        level->living_object[i].setMaxHp(int_register2);
+        level->living_object[i].setMaxHp(int_register2, int_register2);
         file >> int_register2;
         level->living_object[i].setAlive(int_register2);
         level->loadPhysicalObject(&file,level->living_object,i);
@@ -205,69 +206,68 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     float float_register, float_register2;
     unsigned short ushort_register;
     string string_register;
-
     // Loads body
     (*file) >> int_register;
-    object->setId(int_register);
+    object[n].setId(int_register);
 
     //body type
     (*file) >> int_register;
     switch(int_register)
     {
         case DYNAMIC:
-            object->body_def.type = b2_dynamicBody;
+            object[n].body_def.type = b2_dynamicBody;
             break;
         case STATIC:
-            object->body_def.type = b2_staticBody;
+            object[n].body_def.type = b2_staticBody;
             break;
         case KINEMATIC:
-            object->body_def.type = b2_kinematicBody;
+            object[n].body_def.type = b2_kinematicBody;
             break;
     }
 
     //body position
     (*file) >> float_register;
     (*file) >> float_register2;
-    object->body_def.position.Set(float_register, float_register2);
+    object[n].body_def.position.Set(float_register, float_register2);
 
     //body angle
     (*file) >> float_register;
-    object->body_def.angle = float_register;
+    object[n].body_def.angle = float_register;
 
     //body linear damping
     (*file) >> float_register;
-    object->body_def.linearDamping = float_register;
+    object[n].body_def.linearDamping = float_register;
 
     //body angular damping
     (*file) >> float_register;
-    object->body_def.angularDamping = float_register;
+    object[n].body_def.angularDamping = float_register;
 
     //body gravity scaling
     (*file) >> float_register;
-    object->body_def.gravityScale = float_register;
+    object[n].body_def.gravityScale = float_register;
 
     //allow sleep flag
     (*file) >> int_register;
-    object->body_def.allowSleep = int_register;
+    object[n].body_def.allowSleep = int_register;
 
     //awake flag
     (*file) >> int_register;
-    object->body_def.awake = int_register;
+    object[n].body_def.awake = int_register;
 
     //fixed rotation flag
     (*file) >> int_register;
-    object->body_def.fixedRotation = int_register;
+    object[n].body_def.fixedRotation = int_register;
 
     //bullet flag
     (*file) >> int_register;
-    object->body_def.bullet = int_register;
+    object[n].body_def.bullet = int_register;
 
     //active flag
     (*file) >> int_register;
-    object->body_def.active = int_register;
+    object[n].body_def.active = int_register;
 
     //Creates body using the body definition that was just loaded
-    object->body = world->CreateBody(&(object->body_def));
+    object[n].body = world->CreateBody(&(object[n].body_def));
 
     // Loads shape
     (*file) >> shapetype;
@@ -288,8 +288,9 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
                 (*file) >> float_register;
                 polygon_vertice[i].y = float_register;
             }
-            object->polygon_shape.Set(polygon_vertice, n_polygon_vertices);
-            object->fixture_def.shape = &object->polygon_shape;
+            object[n].polygon_shape.Set(polygon_vertice, n_polygon_vertices);
+            object[n].polygon_shape.m_type = b2Shape::e_polygon;
+            object[n].fixture_def.shape = &object[n].polygon_shape;
             delete[] polygon_vertice;
         }
         break;
@@ -299,8 +300,10 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             float half_width, half_height;
             (*file) >> half_width;
             (*file) >> half_height;
-            object->polygon_shape.SetAsBox(half_width, half_height);
-            object->fixture_def.shape = &object->polygon_shape;
+            object[n].polygon_shape.SetAsBox(half_width, half_height);
+            object[n].polygon_shape.m_type = b2Shape::e_polygon;
+            object[n].fixture_def.shape = &(object[n].polygon_shape);
+
         }
         break;
         case CIRCLE:
@@ -308,29 +311,30 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
             //Sets circle radius
             float radius;
             (*file) >> radius;
-            object->circle_shape.m_radius = radius;
-            object->fixture_def.shape = &object->circle_shape;
+            object[n].circle_shape.m_radius = radius;
+            object[n].circle_shape.m_type = b2Shape::e_circle;
+            object[n].fixture_def.shape = &(object[n].circle_shape);
         }
         break;
     }
 
     //Loads fixture
     (*file) >> float_register; //Density
-    object->fixture_def.density = float_register;
+    object[n].fixture_def.density = float_register;
 
     (*file) >> float_register; //Friction
-    object->fixture_def.friction = float_register;
+    object[n].fixture_def.friction = float_register;
 
     (*file) >> float_register; //Restitution
-    object->fixture_def.restitution = float_register;
+    object[n].fixture_def.restitution = float_register;
 
     (*file) >> ushort_register; //Category
-    object->fixture_def.filter.categoryBits = ushort_register;
+    object[n].fixture_def.filter.categoryBits = ushort_register;
 
     (*file) >> ushort_register; //Mask
-    object->fixture_def.filter.maskBits = ushort_register;
+    object[n].fixture_def.filter.maskBits = ushort_register;
 
-    object->body->CreateFixture(&(object->fixture_def));
+    object[n].body->CreateFixture(&(object[n].fixture_def));
 
     //Loads sprites
     (*file) >> string_register;
@@ -338,9 +342,9 @@ void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
     (*file) >> int_register; //Number of Sprites
     (*file) >> float_register; //Sprite width
     (*file) >> float_register2; //Sprite height
-    object->loadSprite(sprite_filename, int_register, float_register, float_register2);
+    object[n].loadSprite(sprite_filename, int_register, float_register, float_register2);
 
     (*file) >> int_register; //To be printed flag
-    object->setToBePrinted(int_register);
+    object[n].setToBePrinted(int_register);
 }
 #endif // LEVEL

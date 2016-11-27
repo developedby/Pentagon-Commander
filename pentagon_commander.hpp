@@ -26,6 +26,7 @@ void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue
 float pixelsToMeters(float px);
 float metersToPixels(float m);
 
+#include <Box2D.h>
 #include <GraphicElement.hpp>
 #include <prompt.hpp>
 #include <PhysicalObject.hpp>

@@ -14,6 +14,7 @@ public:
     void setAlive(bool _alive);
     bool getAlive();
     void setMaxHp(int _max_hp);
+    void setMaxHp(int _max_hp, int _hp);
     int getMaxHp();
     LivingObject(){};
     LivingObject(int _max_hp, bool _alive);
@@ -30,6 +31,13 @@ void LivingObject::setMaxHp(int _max_hp)
 {
     max_hp = _max_hp;
 }
+
+void LivingObject::setMaxHp(int _max_hp, int _hp)
+{
+    max_hp = _max_hp;
+    hp = _hp;
+}
+
 
 int LivingObject::getMaxHp()
 {
