@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1480214955 source:c:\users\lucca\documents\levelmaker\levelmaker.cpp
+	<iostream>
+	<fstream>
+
