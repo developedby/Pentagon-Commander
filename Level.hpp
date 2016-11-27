@@ -23,7 +23,8 @@ private:
     int n_living_objects;
     int n_cameras;
     ALLEGRO_SAMPLE *bg_music;
-    void loadPhysicalObject(ifstream *file,PhysicalObject *object,int n);
+    template <class object_type>
+    void loadPhysicalObject(ifstream *file, object_type *object, int n);
     void createWorld();
     void setName(string _name);
     void setNPlayers(int _n_players);
@@ -200,7 +201,8 @@ Level* Level::loadLevel(const char* filename)
     return level;
 }
 
-void Level::loadPhysicalObject(ifstream *file, PhysicalObject *object, int n)
+template <class object_type>
+void Level::loadPhysicalObject(ifstream *file, object_type *object, int n)
 {
     int shapetype, i, int_register;
     float float_register, float_register2;
