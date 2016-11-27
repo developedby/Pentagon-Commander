@@ -54,7 +54,7 @@ void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
         al_set_target_bitmap(screen);
         for(int i=log_pos; i<n_log_lines; i++)
         {
-            al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - (3+i)*(font_size + line_offset) - base_line_offset - log_offset, ALLEGRO_ALIGN_LEFT, log[i].c_str());
+            al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - (3+i-log_pos)*(font_size + line_offset) - base_line_offset - log_offset, ALLEGRO_ALIGN_LEFT, log[i].c_str());
         }
     }
     al_set_target_bitmap(al_get_backbuffer(display));
