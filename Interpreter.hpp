@@ -48,11 +48,21 @@ void Interpreter::setLevel(Level* _level)
 
 ///Commands
 
-/*string Interpreter::walk(string command)
+string Interpreter::walk(string command)
 {
-
+    istringstream iss(command);
+    string word;
+    iss >> word;
+    if(word.compare("walk"))
+    {
+        iss >> word;
+        if(word.compare("right"))
+            level->player[0]->body->ApplyLinearImpulseToCenter());
+        else if(word.compare("left"))
+            level->player[0]
+    }
 }
 string Interpreter::jump(string command);
-string Interpreter::stop(string command);*/
+string Interpreter::stop(string command);
 
 #endif // INTERPRETER
