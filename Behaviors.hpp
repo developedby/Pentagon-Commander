@@ -190,7 +190,7 @@ public:
     }
 };
 
-class CyclicalAnimation : public Animation
+class CyclicalAnimation : public Animation ///MAKE CYCLICAL ANIMATION ONLY USE CERTAIN SPRITES
 {
 protected:
     int current_sprite;
