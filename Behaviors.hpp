@@ -201,6 +201,7 @@ public:
     {
         animation_counter = 0;
         current_sprite = _current_sprite;
+        sprite_frames = _sprite_frames;
     }
     virtual void behave()
     {
