@@ -66,7 +66,7 @@ void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
 
 Prompt::~Prompt()
 {
-    delete instance;
+    instance = nullptr;
 }
 
 Prompt* Prompt::getPrompt()

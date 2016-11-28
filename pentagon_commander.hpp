@@ -40,6 +40,7 @@ float metersToPixels(float m);
 #include <Cameraman.hpp>
 #include <prompt.hpp>
 #include <Interpreter.hpp>
+#include <Behaviors.h>
 
 float pixelsToMeters(float px)
 {

@@ -31,10 +31,10 @@ private:
     void setNPhysicalObjects(int _n_physical_objects);
     void setNLivingObjects(int _n_living_objects);
     void setNCameras(int _n_cameras);
-    bool available_command[n_commands];
     Level(){};
 public:
     virtual ~Level();
+    bool available_command[n_commands];
     LivingObject *player;
     PhysicalObject *physical_object;
     LivingObject *living_object;
@@ -47,15 +47,20 @@ public:
     int getNLivingObjects();
     int getNCameras();
     string getName();
+    bool checkObjective();
     static Level* loadLevel(const char* filename);
+
 };
 
 Level::~Level()
 {
     delete world;
-    delete[] physical_object;
-    delete[] living_object;
-    delete[] player;
+    if(n_physical_objects)
+        delete[] physical_object;
+    if(n_living_objects)
+        delete[] living_object;
+    if(n_players)
+        delete[] player;
 }
 
 
@@ -112,6 +117,35 @@ void Level::setName(string _name)
 string Level::getName()
 {
     return name;
+}
+
+bool Level::checkObjective()
+{
+    int i;
+    for(i=0; i<n_players; i++)
+    {
+        b2Transform obj_t = player[i].body->GetTransform();
+        // Assuming each body is using only 1 fixture (as done in loadLevel)
+        b2AABB obj_aabb;
+        b2Fixture *obj_fixture = player[i].body->GetFixtureList();
+        const b2Shape *obj_shape = obj_fixture->GetShape();
+        const int childCount = obj_shape->GetChildCount();
+        // Calculate the fixture's AABB
+        for (int child = 0; child<childCount; ++child)
+        {
+            b2AABB shapeAABB;
+            obj_shape->ComputeAABB(&shapeAABB, obj_t, child);
+            obj_aabb.Combine(shapeAABB);
+        }
+
+        // If the AABBs intercept
+        if(obj_aabb.upperBound.x > objective_area.lowerBound.x)
+            if(obj_aabb.upperBound.y > objective_area.lowerBound.y)
+                if(obj_aabb.lowerBound.x < objective_area.upperBound.x)
+                    if(obj_aabb.lowerBound.y < objective_area.upperBound.y)
+                        return true;
+    }
+    return false;
 }
 
 Level* Level::loadLevel(const char* filename)

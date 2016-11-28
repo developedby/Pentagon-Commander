@@ -54,7 +54,7 @@ string Interpreter::interpret(string command)
     word.clear();
     iss >> word;
     cout << word << endl;
-    if(word.compare("walk") == 0)
+    if(word.compare("walk") == 0 && level->available_command[e_walk])
     {
         walk(iss);
         return answer;

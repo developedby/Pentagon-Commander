@@ -18,6 +18,7 @@ using namespace std;
 
 int main()
 {
+    srand(time(0));
     ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
@@ -36,7 +37,6 @@ int main()
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
 
-    b2Vec2 temp;
     while(1)
     {
         ALLEGRO_EVENT event;
@@ -46,19 +46,22 @@ int main()
             thelevel->world->Step(time_step, velocity_iterations, position_iterations);
             al_set_target_bitmap(al_get_backbuffer(display));
             al_clear_to_color(al_map_rgb(0,0,0));
+            if(thelevel->checkObjective())
+                break;
             thecameraman.recordLevel();
             thecameraman.playLevel(display);
             theprompt->processPressedCharacter();
             theprompt->printPrompt(display, font);
-            temp = thelevel->player[0].body->GetPosition();
             al_flip_display();
-            //cout << "player" << temp.x << ' ' << temp.y << endl;
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
         theprompt->setPressedCharacter(&event);
     }
 
+    delete thelevel;
+    delete theprompt->interpreter;
+    delete theprompt;
     destroyAllegro(&display, &event_queue, &timer, &font, &som);
 }
 
@@ -126,7 +129,7 @@ int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue, AL
    }
 
     // Configura o título da janela
-    al_set_window_title(*display, "Pentagon Commander");
+    al_set_window_title(*display, "Pentagon_Commander");
 
 
    *event_queue = al_create_event_queue();

@@ -31,7 +31,7 @@ public:
     float getWidth();
     GraphicElement();
     GraphicElement(float _px_x, float _px_y);
-    ~GraphicElement();
+    virtual ~GraphicElement();
     void setCenter(float _px_center_x, float _px_center_y);
     void setCorner(float _px_x, float _px_y);
 };

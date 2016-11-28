@@ -19,6 +19,7 @@ public:
     int getMaxHp();
     LivingObject(){};
     LivingObject(int _max_hp, bool _alive);
+    virtual ~LivingObject(){};
 };
 
 LivingObject::LivingObject(int _max_hp, bool _alive)

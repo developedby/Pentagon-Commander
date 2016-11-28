@@ -1684,3 +1684,565 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_audio.h"
 
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2broadphase.cpp
+	<Box2D/Collision/b2BroadPhase.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2collidecircle.cpp
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2collideedge.cpp
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2collidepolygon.cpp
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2collision.cpp
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2Distance.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2distance.cpp
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2dynamictree.cpp
+	<Box2D/Collision/b2DynamicTree.h>
+	<string.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\b2timeofimpact.cpp
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Common/b2Timer.h>
+	<stdio.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\shapes\b2chainshape.cpp
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<new>
+	<string.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\shapes\b2circleshape.cpp
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\shapes\b2edgeshape.cpp
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\collision\shapes\b2polygonshape.cpp
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2blockallocator.cpp
+	<Box2D/Common/b2BlockAllocator.h>
+	<limits.h>
+	<string.h>
+	<stddef.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2draw.cpp
+	<Box2D/Common/b2Draw.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2math.cpp
+	<Box2D/Common/b2Math.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2settings.cpp
+	<Box2D/Common/b2Settings.h>
+	<stdio.h>
+	<stdarg.h>
+	<stdlib.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2stackallocator.cpp
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Common/b2Math.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\common\b2timer.cpp
+	<Box2D/Common/b2Timer.h>
+	<windows.h>
+	<sys/time.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2body.cpp
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2contactmanager.cpp
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2fixture.cpp
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2BlockAllocator.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2island.cpp
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Dynamics/b2Island.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Contacts/b2ContactSolver.h>
+	<Box2D/Dynamics/Joints/b2Joint.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Common/b2Timer.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2world.cpp
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2Island.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Contacts/b2ContactSolver.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\b2worldcallbacks.cpp
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2chainandcirclecontact.cpp
+	<Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2chainandpolygoncontact.cpp
+	<Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2circlecontact.cpp
+	<Box2D/Dynamics/Contacts/b2CircleContact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2contact.cpp
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Contacts/b2CircleContact.h>
+	<Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h>
+	<Box2D/Dynamics/Contacts/b2PolygonContact.h>
+	<Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h>
+	<Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h>
+	<Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h>
+	<Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h>
+	<Box2D/Dynamics/Contacts/b2ContactSolver.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2World.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2contactsolver.cpp
+	<Box2D/Dynamics/Contacts/b2ContactSolver.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Common/b2StackAllocator.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2edgeandcirclecontact.cpp
+	<Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2edgeandpolygoncontact.cpp
+	<Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2polygonandcirclecontact.cpp
+	<Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\contacts\b2polygoncontact.cpp
+	<Box2D/Dynamics/Contacts/b2PolygonContact.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2distancejoint.cpp
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2frictionjoint.cpp
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2gearjoint.cpp
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2joint.cpp
+	<Box2D/Dynamics/Joints/b2Joint.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<new>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2motorjoint.cpp
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2mousejoint.cpp
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2prismaticjoint.cpp
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2pulleyjoint.cpp
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2revolutejoint.cpp
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2ropejoint.cpp
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2weldjoint.cpp
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\dynamics\joints\b2wheeljoint.cpp
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1480275588 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\box2d\rope\b2rope.cpp
+	<Box2D/Rope/b2Rope.h>
+	<Box2D/Common/b2Draw.h>
+
+1480343932 source:c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\pentagon_commander.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<sstream>
+	<time.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<Box2D/Box2D.h>
+	<pentagon_commander.hpp>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
+	"allegro5/base.h"
+	"allegro5/altime.h"
+	"allegro5/bitmap.h"
+	"allegro5/bitmap_draw.h"
+	"allegro5/bitmap_io.h"
+	"allegro5/bitmap_lock.h"
+	"allegro5/blender.h"
+	"allegro5/color.h"
+	"allegro5/config.h"
+	"allegro5/debug.h"
+	"allegro5/display.h"
+	"allegro5/drawing.h"
+	"allegro5/error.h"
+	"allegro5/events.h"
+	"allegro5/file.h"
+	"allegro5/fixed.h"
+	"allegro5/fmaths.h"
+	"allegro5/fshook.h"
+	"allegro5/fullscreen_mode.h"
+	"allegro5/joystick.h"
+	"allegro5/keyboard.h"
+	"allegro5/memory.h"
+	"allegro5/monitor.h"
+	"allegro5/mouse.h"
+	"allegro5/mouse_cursor.h"
+	"allegro5/path.h"
+	"allegro5/system.h"
+	"allegro5/threads.h"
+	"allegro5/timer.h"
+	"allegro5/tls.h"
+	"allegro5/transformations.h"
+	"allegro5/utf8.h"
+	"allegro5/alcompat.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\base.h
+	<errno.h>
+	<limits.h>
+	<limits.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/types.h>
+	<fortify/fortify.h>
+	<dmalloc.h>
+	"allegro5/internal/alconfig.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\internal\alconfig.h
+	"allegro5/platform/alplatf.h"
+	"allegro5/platform/alwatcom.h"
+	"allegro5/platform/almngw32.h"
+	"allegro5/platform/albcc32.h"
+	"allegro5/platform/almsvc.h"
+	"allegro5/platform/aliphonecfg.h"
+	"allegro5/platform/alosxcfg.h"
+	"allegro5/platform/alucfg.h"
+	"allegro5/platform/astdint.h"
+	"allegro5/platform/astdbool.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alplatf.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alwatcom.h
+	<io.h>
+	<i86.h>
+	<conio.h>
+	<fcntl.h>
+	<direct.h>
+	<malloc.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almngw32.h
+	<io.h>
+	<fcntl.h>
+	<direct.h>
+	<malloc.h>
+	"allegro5/platform/alplatf.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\albcc32.h
+	<io.h>
+	<fcntl.h>
+	<direct.h>
+	<malloc.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almsvc.h
+	<io.h>
+	<fcntl.h>
+	<direct.h>
+	<malloc.h>
+	"allegro5/platform/alplatf.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\aliphonecfg.h
+	<fcntl.h>
+	<unistd.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alosxcfg.h
+	"allegro5/platform/alplatf.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alucfg.h
+	<fcntl.h>
+	<unistd.h>
+	"alunix.h"
+	"allegro5/platform/alplatf.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alunix.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdint.h
+	<inttypes.h>
+	<stdint.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdbool.h
+	<stdbool.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\altime.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap.h
+	"allegro5/color.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\color.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_draw.h
+	"allegro5/bitmap.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_io.h
+	"allegro5/bitmap.h"
+	"allegro5/file.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\file.h
+	"allegro5/base.h"
+	"allegro5/path.h"
+	"allegro5/utf8.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\path.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\utf8.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_lock.h
+	"allegro5/bitmap.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\blender.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\config.h
+	"allegro5/file.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\debug.h
+	<assert.h>
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\display.h
+	"allegro5/bitmap.h"
+	"allegro5/color.h"
+	"allegro5/events.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\events.h
+	"allegro5/altime.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\drawing.h
+	"allegro5/color.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\error.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\fixed.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\fmaths.h
+	"allegro5/base.h"
+	"allegro5/fixed.h"
+	"allegro5/inline/fmaths.inl"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\inline\fmaths.inl
+	"allegro5/error.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\fshook.h
+	"allegro5/base.h"
+	"allegro5/file.h"
+	"allegro5/path.h"
+	<sys/types.h>
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\fullscreen_mode.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\joystick.h
+	"allegro5/base.h"
+	"allegro5/events.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\keyboard.h
+	"allegro5/base.h"
+	"allegro5/events.h"
+	"allegro5/keycodes.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\keycodes.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\memory.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\monitor.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse.h
+	"allegro5/base.h"
+	"allegro5/events.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse_cursor.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\system.h
+	"allegro5/config.h"
+	"allegro5/path.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\threads.h
+	"allegro5/altime.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\timer.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\tls.h
+	"allegro5/base.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\transformations.h
+	"allegro5/display.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_font.h
+	"allegro5/allegro.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_ttf.h
+	"allegro5/allegro.h"
+	"allegro5/allegro_font.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_image.h
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_audio.h
+	"allegro5/allegro.h"
+
+1480275588 c:\users\aluno\downloads\jogo_prog2-master\jogo_prog2-master\libs\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_acodec.h
+	"allegro5/allegro.h"
+	"allegro5/allegro_audio.h"
+

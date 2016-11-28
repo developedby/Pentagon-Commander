@@ -9,7 +9,7 @@ class Level;
 class PhysicalObject : public GraphicElement
 {
 private:
-    int id;
+    unsigned int id;
 public:
     void setId(int _id);
     b2BodyDef body_def;
@@ -17,9 +17,7 @@ public:
     b2CircleShape circle_shape;
     b2PolygonShape polygon_shape;
     b2FixtureDef fixture_def;
-
-    //PhysicalObject();
-    //~PhysicalObject();
+    virtual ~PhysicalObject(){};
 };
 
 void PhysicalObject::setId(int _id)
