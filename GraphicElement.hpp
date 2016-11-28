@@ -34,7 +34,13 @@ public:
     virtual ~GraphicElement();
     void setCenter(float _px_center_x, float _px_center_y);
     void setCorner(float _px_x, float _px_y);
+    int getNSprites();
 };
+
+int GraphicElement::getNSprites()
+{
+    return n_sprites;
+}
 
 GraphicElement::GraphicElement(float _px_x, float _px_y)
 {

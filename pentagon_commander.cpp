@@ -37,6 +37,15 @@ int main()
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
 
+    unsigned int *sprite_frames = new unsigned int[thelevel->player[0].getNSprites()];
+    for(int i=0; i<thelevel->player[0].getNSprites(); i++)
+    {
+        sprite_frames[i] = 60;
+    }
+    CyclicalAnimation p1_animation(sprite_frames,thelevel->player[0].getNSprites(),&(thelevel->player[0]),0);
+    CyclicalAnimation p2_animation(sprite_frames,thelevel->player[1].getNSprites(),&(thelevel->player[1]),0);
+    CyclicalAnimation p3_animation(sprite_frames,thelevel->player[2].getNSprites(),&(thelevel->player[2]),0);
+
     while(1)
     {
         ALLEGRO_EVENT event;
@@ -48,6 +57,11 @@ int main()
             al_clear_to_color(al_map_rgb(0,0,0));
             if(thelevel->checkObjective())
                 break;
+
+            p1_animation.behave();
+            p2_animation.behave();
+            p3_animation.behave();
+
             thecameraman.recordLevel();
             thecameraman.playLevel(display);
             theprompt->processPressedCharacter();
