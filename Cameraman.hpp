@@ -3,7 +3,7 @@
 
 #include <pentagon_commander.hpp>
 #include <Camera.hpp>
-#define <Level.hpp>
+#include <Level.hpp>
 
 class Cameraman
 {
