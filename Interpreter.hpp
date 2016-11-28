@@ -95,13 +95,16 @@ command_execution Interpreter::walk(istringstream &iss)
         return e_executed;
     }
     else
+    {
+        answer = "Syntax error after 'walk'";
         return e_syntax_error;
+    }
     answer = "unknown error 0x0";
     return e_unknown_error;
 }
 command_execution Interpreter::jump(istringstream &iss)
 {
-    level->player[0].body->SetLinearVelocity(b2Vec2(level->player[0].body->GetLinearVelocity().x, player_max_speed));
+    level->player[0].body->SetLinearVelocity(b2Vec2(level->player[0].body->GetLinearVelocity().x, player_max_speed*5));
     answer = "jumped";
     return e_executed;
 }
