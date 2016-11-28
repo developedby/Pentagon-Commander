@@ -234,7 +234,8 @@ void Prompt::processPressedCharacter()
                 current_line.append(" ");
                 break;
             case ALLEGRO_KEY_BACKSPACE:
-                current_line.pop_back();
+                if(current_line.length() != 0)
+                    current_line.pop_back();
                 break;
             case ALLEGRO_KEY_ENTER:
             {

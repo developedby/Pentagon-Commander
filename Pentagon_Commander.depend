@@ -1427,11 +1427,12 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_audio.h"
 
-1480215899 source:c:\users\lucca\documents\jogo_prog2\pentagon_commander.cpp
+1480297154 source:c:\users\lucca\documents\jogo_prog2\pentagon_commander.cpp
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
 	<fstream>
+	<sstream>
 	<time.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_font.h>
