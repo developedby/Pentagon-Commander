@@ -1,20 +1,9 @@
 #ifndef CAMERAMAN
 #define CAMERAMAN
-#endif // CAMERAMAN
 
-#ifndef PENTAGONCOMMANDER_HPP
-#define PENTAGONCOMMANDER_HPP
 #include <pentagon_commander.hpp>
-#endif // PENTAGONCOMMANDER_HPP
-
-#ifndef CAMERA
-#define CAMERA
 #include <Camera.hpp>
-#endif // CAMERA
-
-#ifndef LEVEL
 #define <Level.hpp>
-#endif // LEVEL
 
 class Cameraman
 {
@@ -107,3 +96,5 @@ void Cameraman::playLevel(ALLEGRO_DISPLAY *display)
     for(i=0; i<n_cameras; i++)
         camera[i].play(display);
 }
+
+#endif // CAMERAMAN
