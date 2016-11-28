@@ -29,7 +29,7 @@ int main()
     if(initAllegro(&display, &event_queue, &timer, &font, &som) == -1)
         return -1;
 
-    thelevel = Level::loadLevel("asdf.pcl");
+    thelevel = Level::loadLevel("example.pcl");
 
     Cameraman thecameraman(thelevel);
     Prompt *theprompt = Prompt::getPrompt();

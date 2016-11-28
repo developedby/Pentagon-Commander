@@ -1,0 +1,181 @@
+Level name : example
+gravity.x : 0
+gravity.y : -7.0
+background file name : background.png
+objective.upperbound.x : 20.0
+objective.upperbound.y : 3.0
+objective.lowerbound.x : 19.0
+objective.lowerbound.y : 1.0
+n_players : 1
+player[0] id : 0
+player[0] body type : 0
+player[0] position x : 1.0
+player[0] position y : 1.0
+player[0] angle : 0.0
+player[0] linear damping : 0.0
+player[0] angular damping : 0.0
+player[0] gravity scale : 1.0
+player[0] allow sleep : 0
+player[0] awake : 1
+player[0] fixed rotation : 1
+player[0] bullet flag : 0
+player[0] active flag : 1
+player[0] shapetype : 0
+player[0] n_vertices : 5
+player[0] vertice[0] x : -0.49275
+player[0] vertice[0] y : 0.10145
+player[0] vertice[1] x : 0.0
+player[0] vertice[1] y : 0.49275
+player[0] vertice[2] x : 0.49275
+player[0] vertice[2] y : 0.10145
+player[0] vertice[3] x : 0.31884
+player[0] vertice[3] y : -0.49275
+player[0] vertice[4] x : -0.31884
+player[0] vertice[4] y : -0.49275
+player[0] density : 3000
+player[0] friction : 0
+player[0] restitution : 0
+player[0] category bits : 2
+player[0] mask bits : 14
+player[0] sprite filename : pentagon.png
+player[0] n_sprites : 2
+player[0] sprite witdh : 69
+player[0] sprite height : 69
+player[0] to be printed : 1
+n_living_objects : 1
+living_object[0] max hp : 1
+living_object[0] alive flag : 1
+living_object[0] id : 2
+living_object[0] body type : 0
+living_object[0] position x : 10.5
+living_object[0] position y : 1.5
+living_object[0] angle : 0
+living_object[0] linear damping : 0
+living_object[0] angular damping : 0
+living_object[0] gravity scale : 1
+living_object[0] allow sleep : 1
+living_object[0] awake : 1
+living_object[0] fixed rotation : 1
+living_object[0] bullet flag : 0
+living_object[0] active flag : 1
+living_object[0] shapetype : 2
+living_object[0] radius : 0.3456
+living_object[0] density : 4000
+living_object[0] friction : 0
+living_object[0] restitution : 0.2
+living_object[0] category bits : 8
+living_object[0] mask bits : 14
+living_object[0] sprite filename : enemy1.png
+living_object[0] n_sprites : 1
+living_object[0] sprite witdh : 47
+living_object[0] sprite height : 47
+living_object[0] to be printed : 1
+n_physical_objects : 4
+physical_object[0] id : 1
+physical_object[0] body type : 1
+physical_object[0] position x : -0.5
+physical_object[0] position y : 1.0
+physical_object[0] angle : 0
+physical_object[0] linear damping : 0
+physical_object[0] angular damping : 0
+physical_object[0] gravity scale : 0
+physical_object[0] allow sleep : 1
+physical_object[0] awake : 1
+physical_object[0] fixed rotation : 1
+physical_object[0] bullet flag : 0
+physical_object[0] active flag : 1
+physical_object[0] shapetype : 1
+physical_object[0] half width : 0.5
+physical_object[0] half height : 2
+physical_object[0] density : 5000
+physical_object[0] friction : 0
+physical_object[0] restitution : 0.1
+physical_object[0] category bits : 4
+physical_object[0] mask bits : 10
+physical_object[0] sprite filename : bigfloor.png
+physical_object[0] n_sprites : 1
+physical_object[0] sprite witdh : 69
+physical_object[0] sprite height : 276
+physical_object[0] to be printed : 1
+physical_object[1] id : 1
+physical_object[1] body type : 1
+physical_object[1] position x : 5.5
+physical_object[1] position y : -0.5
+physical_object[1] angle : 0
+physical_object[1] linear damping : 0
+physical_object[1] angular damping : 0
+physical_object[1] gravity scale : 0
+physical_object[1] allow sleep : 1
+physical_object[1] awake : 1
+physical_object[1] fixed rotation : 1
+physical_object[1] bullet flag : 0
+physical_object[1] active flag : 1
+physical_object[1] shapetype : 1
+physical_object[1] half width : 5
+physical_object[1] half height : 0.5
+physical_object[1] density : 5000
+physical_object[1] friction : 0
+physical_object[1] restitution : 0.1
+physical_object[1] category bits : 4
+physical_object[1] mask bits : 10
+physical_object[1] sprite filename : bigfloor.png
+physical_object[1] n_sprites : 1
+physical_object[1] sprite witdh : 690
+physical_object[1] sprite height : 69
+physical_object[1] to be printed : 1
+physical_object[2] id : 1
+physical_object[2] body type : 1
+physical_object[2] position x : 15.0
+physical_object[2] position y : 0.5
+physical_object[2] angle : 0
+physical_object[2] linear damping : 0
+physical_object[2] angular damping : 0
+physical_object[2] gravity scale : 0
+physical_object[2] allow sleep : 1
+physical_object[2] awake : 1
+physical_object[2] fixed rotation : 1
+physical_object[2] bullet flag : 0
+physical_object[2] active flag : 1
+physical_object[2] shapetype : 1
+physical_object[2] half width : 5
+physical_object[2] half height : 0.5
+physical_object[2] density : 7000
+physical_object[2] friction : 0
+physical_object[2] restitution : 0
+physical_object[2] category bits : 4
+physical_object[2] mask bits : 10
+physical_object[2] sprite filename : bigfloor.png
+physical_object[2] n_sprites : 1
+physical_object[2] sprite witdh : 690
+physical_object[2] sprite height : 69
+physical_object[2] to be printed : 1
+physical_object[3] id : 1
+physical_object[3] body type : 1
+physical_object[3] position x : 20.5
+physical_object[3] position y : 1.5
+physical_object[3] angle : 0
+physical_object[3] linear damping : 0
+physical_object[3] angular damping : 0
+physical_object[3] gravity scale : 0
+physical_object[3] allow sleep : 1
+physical_object[3] awake : 1
+physical_object[3] fixed rotation : 1
+physical_object[3] bullet flag : 0
+physical_object[3] active flag : 1
+physical_object[3] shapetype : 1
+physical_object[3] half width : 0.5
+physical_object[3] half height : 2
+physical_object[3] density : 6346
+physical_object[3] friction : 0
+physical_object[3] restitution : 0
+physical_object[3] category bits : 4
+physical_object[3] mask bits : 10
+physical_object[3] sprite filename : bigfloor.png
+physical_object[3] n_sprites : 1
+physical_object[3] sprite witdh : 69
+physical_object[3] sprite height : 276
+physical_object[3] to be printed : 1
+n_cameras : 1
+command 0: 3
+command 1: 3
+command 2: 3

@@ -586,6 +586,17 @@ int main()
     ugly_file << int_register << ' ';
     neat_file << "n_cameras : " << int_register << '\n';
 
+    cout << "Insert the number of commands: ";
+    cin >> int_register;
+
+    for(i=0; i<int_register; i++)
+    {
+        cout << "Choose if command " << i << "is available (1-yes, 0-no): ";
+        cin >> int_register2;
+        ugly_file << int_register << ' ';
+        neat_file << "command " << i << ": "<< int_register << '\n';
+    }
+
     ugly_file.close();
     neat_file.close();
 
