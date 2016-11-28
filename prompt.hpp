@@ -243,9 +243,9 @@ void Prompt::processPressedCharacter()
                     log[i] = log[i-1];
                 log[0] = current_line;
                 n_log_lines++;
-                current_line.clear();
                 feedback_line.clear();
                 feedback_line = interpreter->interpret(current_line);
+                current_line.clear();
             }
                 break;
             case ALLEGRO_KEY_TAB:

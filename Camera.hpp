@@ -119,7 +119,7 @@ void Camera::record()
     int i;
     b2Vec2 body_pos, rect_dist;
     followPlayer();
-    cout << "camera" << level_corner_position.x << ' ' << level_corner_position.y << endl;
+    //cout << "camera" << level_corner_position.x << ' ' << level_corner_position.y << endl;
     background.setDrawingTarget(screen);
     background.printOnScreen();
     for(i=0; i<level->getNPhysicalObjects(); i++)

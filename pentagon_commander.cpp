@@ -41,12 +41,6 @@ int main()
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
-        /*if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_D)
-            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (5000.0,0.0), b2Vec2 (0.0,0.0), true);
-        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_A)
-            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (-5000.0,0.0), b2Vec2 (0.0,0.0), true);
-        if(event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_W)
-            thelevel->player[0].body->ApplyLinearImpulse(b2Vec2 (0.0,10000.0), b2Vec2 (0.0,0.0), true);*/
         if(event.type == ALLEGRO_EVENT_TIMER)
         {
             thelevel->world->Step(time_step, velocity_iterations, position_iterations);
@@ -58,7 +52,7 @@ int main()
             theprompt->printPrompt(display, font);
             temp = thelevel->player[0].body->GetPosition();
             al_flip_display();
-            cout << "player" << temp.x << ' ' << temp.y << endl;
+            //cout << "player" << temp.x << ' ' << temp.y << endl;
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;

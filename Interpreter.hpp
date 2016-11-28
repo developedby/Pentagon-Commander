@@ -13,7 +13,6 @@ private:
     Level* level;
     string word;
     string answer;
-    bool done;
     Interpreter();
 public:
     ~Interpreter();
@@ -51,21 +50,21 @@ void Interpreter::setLevel(Level* _level)
 
 string Interpreter::interpret(string command)
 {
-    done = false;
     istringstream iss(command);
-    command_execution status;
+    word.clear();
     iss >> word;
-    if(word == "walk")
+    cout << word << endl;
+    if(word.compare("walk") == 0)
     {
         walk(iss);
         return answer;
     }
-    else if(word == "jump")
+    else if(word.compare("jump") == 0)
     {
         jump(iss);
         return answer;
     }
-    else if(word == "stop")
+    else if(word.compare("stop") == 0)
     {
         stop(iss);
         return answer;
@@ -73,6 +72,7 @@ string Interpreter::interpret(string command)
     else
     {
         answer = "Syntax Error - Command unknown";
+        return answer;
     }
     return "unknown error uWu";
 }
@@ -82,13 +82,13 @@ string Interpreter::interpret(string command)
 command_execution Interpreter::walk(istringstream &iss)
 {
     iss >> word;
-    if(word.compare("right"))
+    if(word.compare("right") == 0)
     {
         level->player[0].body->SetLinearVelocity(b2Vec2(player_max_speed, level->player[0].body->GetLinearVelocity().y));
         answer = "moving right";
         return e_executed;
     }
-    else if(word.compare("left"))
+    else if(word.compare("left") == 0)
     {
         level->player[0].body->SetLinearVelocity(b2Vec2(-player_max_speed, level->player[0].body->GetLinearVelocity().y));
         answer = "moving left";
@@ -107,7 +107,7 @@ command_execution Interpreter::jump(istringstream &iss)
 }
 command_execution Interpreter::stop(istringstream &iss)
 {
-    level->player[0].body->SetLinearVelocity(b2Vec2(0, 0));
+    level->player[0].body->SetLinearVelocity(b2Vec2(0, level->player[0].body->GetLinearVelocity().y));
     answer = "stopped";
     return e_executed;
 }

@@ -21,7 +21,7 @@ const float prompt_width = (float)SCREEN_W;
 const float prompt_height = 100.0;
 const float log_width = (float)SCREEN_W;
 const float log_height = (float)SCREEN_H - prompt_height;
-const float player_max_speed = 1.0/15.0;
+const float player_max_speed = 1.0;
 
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,

@@ -139,6 +139,7 @@
 		<Unit filename="Camera.hpp" />
 		<Unit filename="Cameraman.hpp" />
 		<Unit filename="GraphicElement.hpp" />
+		<Unit filename="Interpreter.hpp" />
 		<Unit filename="Level.hpp" />
 		<Unit filename="LivingObject.hpp" />
 		<Unit filename="PhysicalObject.hpp" />
