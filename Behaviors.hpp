@@ -197,7 +197,7 @@ protected:
     unsigned int animation_counter;
     unsigned int *sprite_frames;
 public:
-    CyclicalAnimation(unsigned int *sprite_frames, int _n_sprites, PhysicalObject* _object, int _current_sprite) : Animation(int _n_sprites, PhysicalObject* _object)
+    CyclicalAnimation(unsigned int *_sprite_frames, int _n_sprites, PhysicalObject* _object, int _current_sprite) : Animation(int _n_sprites, PhysicalObject* _object)
     {
         animation_counter = 0;
         current_sprite = _current_sprite;
