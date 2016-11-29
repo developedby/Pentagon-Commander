@@ -245,7 +245,7 @@ public:
         l_object->addHp(-damage);
         if(l_object->getHp() <= 0)
         {
-            l_object->setAlive(false);
+            *l_object = false;
         }
     }
 };

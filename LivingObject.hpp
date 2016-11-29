@@ -21,6 +21,10 @@ public:
     LivingObject(int _max_hp, bool _alive);
     int getHp();
     virtual ~LivingObject(){};
+    void operator= (bool state)
+    {
+        alive = state;
+    }
 };
 
 LivingObject::LivingObject(int _max_hp, bool _alive)

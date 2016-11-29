@@ -177,6 +177,8 @@ bool Camera::objectInterceptsCamera(PhysicalObject &object)
     b2Transform obj_t = object.body->GetTransform();
     // Assuming each body is using only 1 fixture (as done in loadLevel)
     b2AABB obj_aabb;
+    obj_aabb.lowerBound = b2Vec2(FLT_MAX, FLT_MAX);
+    obj_aabb.upperBound = b2Vec2(-FLT_MAX, -FLT_MAX);
     b2Fixture *obj_fixture = object.body->GetFixtureList();
     const b2Shape *obj_shape = obj_fixture->GetShape();
     const int childCount = obj_shape->GetChildCount();

@@ -104,7 +104,7 @@ command_execution Interpreter::walk(istringstream &iss)
 }
 command_execution Interpreter::jump(istringstream &iss)
 {
-    level->player[0].body->SetLinearVelocity(b2Vec2(level->player[0].body->GetLinearVelocity().x, player_max_speed*5));
+    level->player[0].body->SetLinearVelocity(b2Vec2(level->player[0].body->GetLinearVelocity().x, player_max_speed*4));
     answer = "jumped";
     return e_executed;
 }
