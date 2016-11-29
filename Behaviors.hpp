@@ -5,19 +5,24 @@
 #include <Level.hpp>
 #include <LivingObject.hpp>
 #include <PhysicalObject.hpp>
-
-class Behavior
+class MustBehave
+{
+public:
+    virtual void behave()=0;
+    virtual ~MustBehave(){}
+};
+class Behavior : virtual public MustBehave
 {
 protected:
     PhysicalObject* object;
 public:
-    virtual void behave() = 0;
+    virtual ~Behavior(){}
 };
 
 class Walk : virtual public Behavior
 {
 protected:
-    b2Vec2 walk_velocity;PhysicalObject* object;
+    b2Vec2 walk_velocity;
 public:
     Walk(b2Vec2 _walk_velocity, PhysicalObject* _object)
     {
@@ -32,6 +37,7 @@ public:
     {
         object->body->SetLinearVelocity(walk_velocity);
     }
+    virtual ~Walk(){}
 };
 
 class WalkAround : virtual public Walk
@@ -45,6 +51,7 @@ protected:
     unsigned int turn_upperbound;
     bool turn_current_state;
 public:
+    virtual ~WalkAround(){}
     WalkAround(b2Vec2 _walk_velocity1, b2Vec2 _walk_velocity2, PhysicalObject* _object, int lb, int ub) : Walk(_walk_velocity1, _object)
     {
         turn_current_state = true;
@@ -85,6 +92,7 @@ protected:
     unsigned int stop_upperbound;
     bool stop_current_state;
 public:
+    virtual ~WalkAndStop(){}
     WalkAndStop(b2Vec2 _walk_velocity, PhysicalObject* _object, int lb, int ub) : Walk(_walk_velocity, _object)
     {
         stop_current_state = true;
@@ -123,6 +131,7 @@ protected:
     unsigned int random_upperbound;
     bool random_current_state;
 public:
+        virtual ~WalkRandomly(){}
     WalkRandomly(b2Vec2 _walk_velocity1, b2Vec2 _walk_velocity2, PhysicalObject* _object, int lb, int ub) :
         Walk(_walk_velocity1, _object),
         WalkAround(_walk_velocity1,_walk_velocity2, _object, lb, ub),
@@ -173,6 +182,7 @@ protected:
     int n_sprites;
     int next_sprite;
 public:
+    virtual ~Animation(){}
     Animation(int _n_sprites, PhysicalObject* _object)
     {
         object = _object;
@@ -197,6 +207,7 @@ protected:
     unsigned int animation_counter;
     unsigned int *sprite_frames;
 public:
+    virtual ~CyclicalAnimation(){}
     CyclicalAnimation(unsigned int *_sprite_frames, int _n_sprites, PhysicalObject* _object, int _current_sprite) : Animation(_n_sprites, _object)
     {
         animation_counter = 0;
@@ -235,6 +246,7 @@ protected:
     int damage;
     LivingObject* l_object;
 public:
+    virtual ~Damage(){}
     Damage(int _damage, PhysicalObject* _object)
     {
         object = _object;

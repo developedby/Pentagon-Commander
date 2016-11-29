@@ -12,6 +12,7 @@ private:
     unsigned int id;
 public:
     void setId(int _id);
+    unsigned int getId();
     b2BodyDef body_def;
     b2Body *body;
     b2CircleShape circle_shape;
@@ -23,5 +24,10 @@ public:
 void PhysicalObject::setId(int _id)
 {
     id = _id;
+}
+
+unsigned int PhysicalObject::getId()
+{
+    return id;
 }
 #endif //PHYSICALOBJECT

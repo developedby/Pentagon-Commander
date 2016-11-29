@@ -37,16 +37,21 @@ int main()
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
 
+    ContactListener *thecontactlistener;
+    thelevel->world->SetContactListener(thecontactlistener);
+
     unsigned int *sprite_frames = new unsigned int[thelevel->player[0].getNSprites()];
     for(int i=0; i<thelevel->player[0].getNSprites(); i++)
     {
         sprite_frames[i] = 60;
     }
     CyclicalAnimation p1_animation(sprite_frames,thelevel->player[0].getNSprites(),&(thelevel->player[0]),0);
-    CyclicalAnimation p2_animation(sprite_frames,thelevel->player[1].getNSprites(),&(thelevel->player[1]),0);
-    CyclicalAnimation p3_animation(sprite_frames,thelevel->player[2].getNSprites(),&(thelevel->player[2]),0);
+    //CyclicalAnimation p2_animation(sprite_frames,thelevel->player[1].getNSprites(),&(thelevel->player[1]),0);
+    //CyclicalAnimation p3_animation(sprite_frames,thelevel->player[2].getNSprites(),&(thelevel->player[2]),0);
 
-    while(1)
+    WalkRandomly enemy_walk(b2Vec2(-1.5, 0), b2Vec2(1.0, 0), &thelevel->living_object[0], 60, 120);
+
+    while(!game_over)
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
@@ -59,8 +64,9 @@ int main()
                 break;
 
             p1_animation.behave();
-            p2_animation.behave();
-            p3_animation.behave();
+            //p2_animation.behave();
+            //p3_animation.behave();
+            enemy_walk.behave();
 
             thecameraman.recordLevel();
             thecameraman.playLevel(display);
@@ -170,4 +176,9 @@ void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue
     al_destroy_event_queue(*event_queue);
     if(comAudio)
         al_destroy_sample(*som);
+}
+
+void gameOver()
+{
+    game_over = true;
 }

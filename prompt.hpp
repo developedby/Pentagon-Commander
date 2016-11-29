@@ -8,7 +8,7 @@
 
 bool key[ALLEGRO_KEY_MAX];
 
-const float line_offset = 18.0;
+const float line_offset = 15.0;
 const float base_line_offset = 10.0;
 const float log_offset = 10.0;
 
@@ -49,7 +49,7 @@ void Prompt::printPrompt(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
     al_clear_to_color(al_map_rgba(0,0,0,0));
     prompt_box.printOnScreen();
     al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - font_size - base_line_offset, ALLEGRO_ALIGN_LEFT, current_line.c_str());
-    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 1*(font_size + line_offset) - base_line_offset, ALLEGRO_ALIGN_LEFT, feedback_line.c_str());
+    al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 1*(font_size + line_offset) -10 - base_line_offset, ALLEGRO_ALIGN_LEFT, feedback_line.c_str());
     al_draw_text(font, al_map_rgb(255,255,255), 10, SCREEN_H - 2*(font_size + line_offset) - base_line_offset, ALLEGRO_ALIGN_LEFT, log[0].c_str());
     if(show_log)
     {

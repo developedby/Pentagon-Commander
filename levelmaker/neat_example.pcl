@@ -49,10 +49,10 @@ living_object[0] id : 2
 living_object[0] body type : 0
 living_object[0] position x : 10.5
 living_object[0] position y : 1.5
-living_object[0] angle : 0
-living_object[0] linear damping : 0
-living_object[0] angular damping : 0
-living_object[0] gravity scale : 1
+living_object[0] angle : 0.0
+living_object[0] linear damping : 0.0
+living_object[0] angular damping : 0.0
+living_object[0] gravity scale : 1.0
 living_object[0] allow sleep : 1
 living_object[0] awake : 1
 living_object[0] fixed rotation : 1

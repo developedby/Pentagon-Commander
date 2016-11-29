@@ -5,6 +5,10 @@ enum commands
 {
     e_stop = 0, e_walk, e_jump
 };
+enum ids
+{
+    e_player = 0, e_wall, e_enemy1
+};
 
 /* Variables */
 const float FPS = 60;
@@ -22,6 +26,7 @@ const float prompt_height = 100.0;
 const float log_width = (float)SCREEN_W;
 const float log_height = (float)SCREEN_H - prompt_height;
 const float player_max_speed = 1.5;
+bool game_over = false;
 
 /* Functions */
 int initAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue,
@@ -30,6 +35,7 @@ void destroyAllegro(ALLEGRO_DISPLAY **display, ALLEGRO_EVENT_QUEUE **event_queue
     ALLEGRO_TIMER **timer, ALLEGRO_FONT **font, ALLEGRO_SAMPLE **som);
 float pixelsToMeters(float px);
 float metersToPixels(float m);
+void gameOver();
 
 #include <Box2D.h>
 #include <GraphicElement.hpp>
@@ -41,6 +47,7 @@ float metersToPixels(float m);
 #include <prompt.hpp>
 #include <Interpreter.hpp>
 #include <Behaviors.hpp>
+#include <ContactListener.hpp>
 
 float pixelsToMeters(float px)
 {

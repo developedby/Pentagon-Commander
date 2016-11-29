@@ -43,7 +43,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Behaviors.h" />
+		<Unit filename="Behaviors.hpp" />
 		<Unit filename="Box2D/Box2D.h" />
 		<Unit filename="Box2D/Collision/Shapes/b2ChainShape.cpp" />
 		<Unit filename="Box2D/Collision/Shapes/b2ChainShape.h" />
@@ -139,6 +139,7 @@
 		<Unit filename="Box2D/Rope/b2Rope.h" />
 		<Unit filename="Camera.hpp" />
 		<Unit filename="Cameraman.hpp" />
+		<Unit filename="ContactListener.hpp" />
 		<Unit filename="GraphicElement.hpp" />
 		<Unit filename="Interpreter.hpp" />
 		<Unit filename="Level.hpp" />
