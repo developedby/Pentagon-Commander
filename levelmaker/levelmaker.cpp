@@ -1,9 +1,383 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <cstring>
+#include <cstdlib>
+
+enum shape_type{POLYGON=0,BOX,CIRCLE};
 
 using namespace std;
 
+void createNewFileFromScratch();
+void createUglyFromNeat();
+void createPhysicalObjectFromNeat(ifstream* neat_file, ofstream* ugly_file);
+
 int main()
+{
+    int mode;
+    cout << "Choose the mode to use" << endl;
+    cout << "1 - Create new file from scratch" << endl;
+    cout << "2 - Create an ugly file using a neat file" << endl;
+    cin >> mode;
+    switch(mode)
+    {
+    case 1:
+        createNewFileFromScratch();
+        break;
+    case 2:
+        createUglyFromNeat();
+        break;
+    }
+    return 0;
+}
+
+void createUglyFromNeat()
+{
+    string string_register;
+    ofstream ugly_file;
+    ifstream neat_file;
+    int i, n_objects;
+
+    cout << "Insert the neat file's name" << endl;
+    cin >> string_register;
+    neat_file.open(string_register.c_str());
+
+    cout << "Insert the ugly file's name" << endl;
+    cin >> string_register;
+    ugly_file.open(string_register.c_str());
+
+    neat_file >> string_register;//Level
+    neat_file >> string_register;//name
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[LEVEL NAME]
+    ugly_file << string_register << ' ';
+
+    neat_file >> string_register;//gravity.x
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[GRAVITY.X]
+    ugly_file << string_register << ' ';
+
+    neat_file >> string_register;//gravity.y
+    neat_file >> string_register;//:
+    neat_file >> string_register;// [GRAVITY.Y]
+    ugly_file << string_register << ' ';
+
+    neat_file >> string_register;//background
+    neat_file >> string_register;//file
+    neat_file >> string_register;//name
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[BACKGROUND FILE NAME]
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//objective.upperbound.x
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[OBJECTIVE.UPPERBOUND.X]
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//objective.upperbound.y
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[OBJECTIVE.UPPERBOUND.Y]
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//objective.lowerbound.x
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[OBJECTIVE.LOWERBOUND.X]
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//objective.lowerbound.y
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[OBJECTIVE.LOWERBOUND.Y]
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//n_players
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[N_PLAYERS]
+    ugly_file << string_register << ' ' ;
+    n_objects = atoi(string_register.c_str());
+
+    for(i=0; i<n_objects; i++) //for n_players
+    {
+        createPhysicalObjectFromNeat(&neat_file, &ugly_file);
+    }
+
+    neat_file >> string_register;//n_physical_objects
+    neat_file >> string_register;//:
+    neat_file >> string_register;//
+    ugly_file << string_register << ' ' ;
+    n_objects = atoi(string_register.c_str());
+
+    for(i=0; i<n_objects; i++)
+    {
+        neat_file >> string_register;//living_object[i]
+        neat_file >> string_register;//max
+        neat_file >> string_register;//hp
+        neat_file >> string_register;//:
+        neat_file >> string_register;//
+        ugly_file << string_register << ' ' ;
+
+        neat_file >> string_register;//living_object[i]
+        neat_file >> string_register;//alive
+        neat_file >> string_register;//flag
+        neat_file >> string_register;//:
+        neat_file >> string_register;//
+        ugly_file << string_register << ' ' ;
+
+        createPhysicalObjectFromNeat(&neat_file, &ugly_file);
+    }
+
+    neat_file >> string_register;//n_physical_objects
+    neat_file >> string_register;//:
+    neat_file >> string_register;//[N_PHYSICAL_OBJECTS]
+    ugly_file << string_register << ' ' ;
+    n_objects = atoi(string_register.c_str());
+
+    for(i=0; i<n_objects; i++) //for n_physical_objects
+    {
+        createPhysicalObjectFromNeat(&neat_file, &ugly_file);
+    }
+
+    neat_file >> string_register;//n_cameras
+    neat_file >> string_register;//:
+    neat_file >> string_register;//
+    ugly_file << string_register << ' ' ;
+
+    neat_file >> string_register;//n_commands
+    neat_file >> string_register;//:
+    neat_file >> string_register;//
+    ugly_file << string_register << ' ' ;
+    n_objects = atoi(string_register.c_str());
+
+    for(i=0; i<n_objects; i--)
+    {
+        neat_file >> string_register;//command
+        neat_file >> string_register;//i
+        neat_file >> string_register;//:
+        neat_file >> string_register;//
+        ugly_file << string_register << ' ' ;
+
+    }
+}
+
+void createPhysicalObjectFromNeat(ifstream* neat_file, ofstream* ugly_file)
+{
+    string string_register;
+    int j;
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//id
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT.id]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//body
+    (*neat_file) >> string_register;//type
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT BODY TYPE]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//position
+    (*neat_file) >> string_register;//x
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT X POSITION]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//position
+    (*neat_file) >> string_register;//y
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT Y POSITION]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//angle
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT ANGLE]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//linear
+    (*neat_file) >> string_register;//damping
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT LINEAR DAMPING]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//angular
+    (*neat_file) >> string_register;//damping
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT ANGULAR DAMPING]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//gravity
+    (*neat_file) >> string_register;//scale
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT GRAVITY SCALE]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//allow
+    (*neat_file) >> string_register;//sleep
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT ALLOW SLEEP FLAG]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//awake
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT AWAKE FLAG]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//fixed
+    (*neat_file) >> string_register;//rotation
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT FIXED ROTATIONG FLAG]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//bullet
+    (*neat_file) >> string_register;//flag
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT BULLET FLAG]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//active
+    (*neat_file) >> string_register;//flag
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT ACTIVE FLAG]
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//shapetype
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//[OBJECT SHAPE TYPE]
+    (*ugly_file) << string_register << ' ' ;
+
+    int shapetype = atoi(string_register.c_str());
+    switch (shapetype)
+    {
+    case POLYGON:
+        (*neat_file) >> string_register;//OBJECT
+        (*neat_file) >> string_register;//n_vertices
+        (*neat_file) >> string_register;//:
+        (*neat_file) >> string_register;//[N_VERTICES]
+        (*ugly_file) << string_register << ' ' ;
+
+        for(j=0; j<atoi(string_register.c_str()); j++)
+        {
+            (*neat_file) >> string_register;//OBJECT
+            (*neat_file) >> string_register;//vertice[j]
+            (*neat_file) >> string_register;//x
+            (*neat_file) >> string_register;//:
+            (*neat_file) >> string_register;//VERTICE X COORDINATE
+            (*ugly_file) << string_register << ' ' ;
+
+            (*neat_file) >> string_register;//OBJECT
+            (*neat_file) >> string_register;//vertice[j]
+            (*neat_file) >> string_register;//y
+            (*neat_file) >> string_register;//:
+            (*neat_file) >> string_register;//VERTICE Y COORDINATE
+            (*ugly_file) << string_register << ' ' ;
+        }
+        break;
+
+    case BOX:
+        (*neat_file) >> string_register;//OBJECT
+        (*neat_file) >> string_register;//half
+        (*neat_file) >> string_register;//width
+        (*neat_file) >> string_register;//:
+        (*neat_file) >> string_register;//
+        (*ugly_file) << string_register << ' ' ;
+
+        (*neat_file) >> string_register;//OBJECT
+        (*neat_file) >> string_register;//half
+        (*neat_file) >> string_register;//height
+        (*neat_file) >> string_register;//:
+        (*neat_file) >> string_register;//
+        (*ugly_file) << string_register << ' ' ;
+        break;
+
+    case CIRCLE:
+        (*neat_file) >> string_register;//OBJECT
+        (*neat_file) >> string_register;//radius
+        (*neat_file) >> string_register;//:
+        (*neat_file) >> string_register;//
+        (*ugly_file) << string_register << ' ' ;
+
+    }//end switch
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//density
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//friction
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//restitution
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//category
+    (*neat_file) >> string_register;//bits
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//mask
+    (*neat_file) >> string_register;//bits
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//sprite
+    (*neat_file) >> string_register;//filename
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//n_sprites
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//sprite
+    (*neat_file) >> string_register;//width
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//sprite
+    (*neat_file) >> string_register;//height
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+
+    (*neat_file) >> string_register;//OBJECT
+    (*neat_file) >> string_register;//to
+    (*neat_file) >> string_register;//be
+    (*neat_file) >> string_register;//printed
+    (*neat_file) >> string_register;//:
+    (*neat_file) >> string_register;//
+    (*ugly_file) << string_register << ' ' ;
+}
+
+void createNewFileFromScratch()
 {
     string string_register;
     ofstream ugly_file, neat_file;
@@ -28,11 +402,13 @@ int main()
     cout << "Insert gravity on the y axis: ";
     cin >> string_register;
     ugly_file << string_register << ' ';
+
     neat_file << "gravity.y : " << string_register << '\n';
 
     cout << "Insert the background file name: ";
     cin >> string_register;
     ugly_file << string_register << ' ';
+
     neat_file << "background file name : " << string_register << '\n';
 
     cout << "Insert the objective area's upperbound x coordinate: ";
@@ -588,17 +964,17 @@ int main()
 
     cout << "Insert the number of commands: ";
     cin >> int_register;
+    ugly_file << int_register << ' ';
+    neat_file << "n_commands : " << int_register << '\n';
 
     for(i=0; i<int_register; i++)
     {
         cout << "Choose if command " << i << "is available (1-yes, 0-no): ";
         cin >> int_register2;
         ugly_file << int_register << ' ';
-        neat_file << "command " << i << ": "<< int_register << '\n';
+        neat_file << "command " << i << " : "<< int_register << '\n';
     }
 
     ugly_file.close();
     neat_file.close();
-
-    return 0;
 }

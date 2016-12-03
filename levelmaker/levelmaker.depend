@@ -3,7 +3,10 @@
 	<iostream>
 	<fstream>
 
-1480371579 source:c:\users\user\documents\engenharia\prog2\caixa_de_texto\jogo_prog2\levelmaker\levelmaker.cpp
+1480775545 source:c:\users\user\documents\engenharia\prog2\caixa_de_texto\jogo_prog2\levelmaker\levelmaker.cpp
 	<iostream>
 	<fstream>
+	<string>
+	<cstring>
+	<cstdlib>
 
