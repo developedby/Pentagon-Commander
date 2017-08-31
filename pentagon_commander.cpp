@@ -14,7 +14,6 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 
-#include <Box2D/Box2D.h>
 #include "pentagon_commander.hpp"
 
 using namespace std;

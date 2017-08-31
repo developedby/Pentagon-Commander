@@ -37,7 +37,7 @@ float pixelsToMeters(float px);
 float metersToPixels(float m);
 void gameOver();
 
-#include <Box2D.h>
+#include <Box2D/Box2D.h>
 #include <GraphicElement.hpp>
 #include <PhysicalObject.hpp>
 #include <LivingObject.hpp>
