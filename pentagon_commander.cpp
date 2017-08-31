@@ -5,14 +5,17 @@
 #include <sstream>
 
 #include <time.h>
+
+//Expects Allegro 5.0.10
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+
 #include <Box2D/Box2D.h>
-#include <pentagon_commander.hpp>
+#include "pentagon_commander.hpp"
 
 using namespace std;
 
@@ -37,8 +40,8 @@ int main()
     thecameraman.setNIndependentElements(0);
     thecameraman.setCameraPositionToPlayer();
 
-    ContactListener *thecontactlistener;
-    thelevel->world->SetContactListener(thecontactlistener);
+    //ContactListener *thecontactlistener;
+    //thelevel->world->SetContactListener(thecontactlistener);
 
     unsigned int *sprite_frames = new unsigned int[thelevel->player[0].getNSprites()];
     for(int i=0; i<thelevel->player[0].getNSprites(); i++)
